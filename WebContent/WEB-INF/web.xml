@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>VisaFT</display-name>
+  <welcome-file-list>
+    <welcome-file>sender.jsp</welcome-file>
+  </welcome-file-list>
+  <description>
+        This is a simple web application with a source code organization
+        based on the recommendations of the Application Developer's Guide.
+    </description>
+  <servlet>
+    <servlet-name>OCTresponseServlet</servlet-name>
+    <servlet-class>com.visa.OCTresponseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OCTresponseServlet</servlet-name>
+    <url-pattern>/OCTresponseServlet/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>OCTrequestServlet</servlet-name>
+    <servlet-class>com.visa.OCTrequestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OCTrequestServlet</servlet-name>
+    <url-pattern>/OCTrequestServlet/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AccountVerificationRequestServlet</servlet-name>
+    <servlet-class>com.visa.AccountVerificationRequestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AccountVerificationRequestServlet</servlet-name>
+    <url-pattern>/AccountVerificationRequestServlet/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AccountVerificationResponseServlet</servlet-name>
+    <servlet-class>com.visa. AccountVerificationResponseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AccountVerificationResponseServlet</servlet-name>
+    <url-pattern>/ AccountVerificationResponseServlet/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AccountlookuprequestServlet</servlet-name>
+    <servlet-class>com.visa.AccountlookuprequestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AccountlookuprequestServlet</servlet-name>
+    <url-pattern>/AccountlookuprequestServlet/*</url-pattern>
+  </servlet-mapping>
+</web-app>
