@@ -1,6 +1,7 @@
 package com.visa;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.SignatureException;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.jasper.tagplugins.jstl.core.Out;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,37 +48,30 @@ public class AccountlookuprequestServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String recipientCardNumber = request.getParameter("recipientCardNumber");
-		//String payload =	"{\"SystemsTraceAuditNumber\":455690,\"RetrievalReferenceNumber\": \"405012455690\",\"AcquiringBin\": 409999,\"AcquirerCountryCode\": \"101\",\"PrimaryAccountNumber\":\"4895070000008881\"}";
 		String payload = (String)new ConfigValues().getPropValues().get("payloadACNL");
+		String token="";
+		String jsonRequest="";
 		JSONObject jsonObject;
+		
 		try {
 			jsonObject = new JSONObject(payload);			
 			jsonObject.put("PrimaryAccountNumber", request.getParameter("recipientCardNumber"));
-			String jsonRequest= VdpUtility.convertToPrettyJsonstring(jsonObject.toString());		
-			 
-            response.getWriter().write(jsonRequest);
-			
-		} catch (JSONException e) {
+			jsonRequest= VdpUtility.convertToPrettyJsonstring(jsonObject.toString());    
+		
+		}
+	
+		catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		} 
+		response.getWriter().write(jsonRequest);
 			
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String jsonRequest= VdpUtility.convertToPrettyJsonstring(RequestUtil.createAccountLookupRequest(request));		
-		String token="";
-		try {
-			 token = new Algorithm().generateXpaytoken(jsonRequest, (String)new ConfigValues().getPropValues().get("pathACNL"));
-		} catch (SignatureException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
-		response.getWriter().write(token);
-	}
-
+}
+	
 }

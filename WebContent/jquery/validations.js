@@ -38,14 +38,7 @@ $(document).ready(function() {
 
 			var accNo = $('#accNo').val();
 
-			$.post('AccountVerificationRequestServlet',{accNo:accNo},function(responseText) { 
-
-
-				$('#requestACTVHeader').html(responseText);  
-
-			});	
-
-
+		
 			$.get('AccountVerificationRequestServlet',{accNo:accNo},function(responseText) { 
 
 
@@ -54,9 +47,10 @@ $(document).ready(function() {
 			});	
 
 			$.get('AccountVerificationResponseServlet',{accNo:accNo},function(responseText) { 
-				$('#response').html(responseText); 				  
+				$('#requestACTVHeader').html(responseText.token);
+				$('#response').html(responseText.response); 				  
 				var responseRegExp = new RegExp("TransactionIdentifier");
-				if (responseRegExp.test(responseText)) {
+				if (responseRegExp.test(responseText.response)) {
 					$( "#next" ).prop( "disabled", false ).css({backgroundColor:"#3385FF"});
 				}else{
 					$( "#next" ).prop( "disabled", true ).css({backgroundColor:"#909090"});
@@ -70,6 +64,45 @@ $(document).ready(function() {
 	$("#clearSender").click(function() { 
 		senderValidator.resetForm();
 	});
+
+
+
+             
+             
+             
+             var adminConsole = $( "#adminConsole" ).dialog({ 
+                 autoOpen: false,
+                 resizable: false,
+                   height:    200,
+                   width:     600,
+                   background: "#ff0000"
+                 }).prev(".ui-dialog-titlebar").css("background","#3385FF");
+                 $("#adminConsole").prev().css({"color":"white"});
+
+                 $( "#admin" ).click(function() {
+                 $( "#adminConsole" ).dialog( "open" );
+                 });
+                 
+                 $("#closeWin").click(function() { 
+                        
+                        $( "#adminConsole" ).dialog( "close" );
+                 });          
+                 
+
+             
+             
+             
+
+$("#adminsubmit").click(function(){
+			
+			var apiKey = $('#apiKey').val();
+			var sharedSecret = $('#sharedSecret').val();
+			alert(apiKey);
+			$.get('AdminConsoleServlet',{apiKey:apiKey,sharedSecret:sharedSecret}, function(responseText){
+				
+				alert("in function");
+			});
+		});
 
 
 	//2nd page
@@ -86,16 +119,17 @@ $(document).ready(function() {
 				submitHandler : function() {
 					$( "#next" ).prop( "disabled", false ).css({backgroundColor:"#3385FF"});
 					var recipientCardNumber =$('#recipientCardNumber').val();   	 
-					$.post('AccountlookuprequestServlet',{recipientCardNumber:recipientCardNumber},function(responseText) {    	
-						$('#requestACTLHeader').html(responseText);     		 
-					});	   	
+					 	
 					$.get('AccountlookuprequestServlet',{recipientCardNumber:recipientCardNumber},function(responseText) {    	
-						$('#request').html(responseText);    		 
+						
+						$('#request').html(responseText);
+							 
 					});	   	 
 					$.get('AccountlookupresponseServlet',{recipientCardNumber:recipientCardNumber},function(responseText) {
-						$('#response').html(responseText);  
+						$('#response').html(responseText.response);  
+						$('#requestACTLHeader').html(responseText.token);    
 						var responseRegExp = new RegExp("CardProductTypeCode");
-						if (responseRegExp.test(responseText)) {
+						if (responseRegExp.test(responseText.response)) {
 							$( "#next" ).prop( "disabled", false ).css({backgroundColor:"#3385FF"});
 						}else{
 							$( "#next" ).prop( "disabled", true ).css({backgroundColor:"#909090"});
@@ -127,11 +161,7 @@ $(document).ready(function() {
 				// on page submit 
 				submitHandler : function() {
 					var amount = $('#amount').val();		 
-					$.post('AFTrequestServlet',  {
-						amount : amount
-					}, function(responseText) { 
-						$('#requestAftHeader').html(responseText); 
-					});	
+					
 
 					$.get('AFTrequestServlet', {
 						amount : amount
@@ -142,9 +172,10 @@ $(document).ready(function() {
 					$.get('AFTresponseServlet', {
 						amount : amount
 					}, function(responseText) {
-						$('#responseAft').html(responseText);  
+						$('#requestAftHeader').html(responseText.token); 
+						$('#responseAft').html(responseText.response);  
 						var responseRegExp = new RegExp("TransactionIdentifier");
-						if (responseRegExp.test(responseText)) {
+						if (responseRegExp.test(responseText.response)) {
 
 							doOCT();
 						} 
@@ -191,14 +222,7 @@ $(document).ready(function() {
 
 
 		var amount = $('#amount').val();
-		$.post('OCTrequestServlet',  {
-			amount : amount
-		},	function(responseText) { 
-
-
-			$('#requestOCTHeader').html(responseText);  
-
-		});	
+		
 
 
 		$.get('OCTrequestServlet', {amount : amount}, function(responseText) {
@@ -211,7 +235,8 @@ $(document).ready(function() {
 			amount : amount
 		}, function(responseText) {
 
-			$('#responseOCT').html(responseText);  
+			$('#responseOCT').html(responseText.response);  
+			$('#requestOCTHeader').html(responseText.token);
 
 		});
 

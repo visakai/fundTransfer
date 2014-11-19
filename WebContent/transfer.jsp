@@ -23,72 +23,55 @@
 </head>
 <body link="#FFFF99" vlink="#FFFF99" alink="#FFFF99">
 	<div id="header" style="text-align: center">
-		</br>
-		<h2>
-			Domestic Funds Transfer <input type="image" src="images/help.png"
+		
+		<h2>Domestic Funds Transfer<input type="image" src="images/help1.gif"
 				align="right" alt="Submit Button" id="transferAmt"
-				onclick="window.open('http://localhost:8080/visaFT/help.html')"
-				style="width: 20px; height: 20px; cursor: pointer;"
-				title="click to get help" />
-		</h2>
-		</br> <font size="2"> </font>
-
+				onclick="window.open('http://localhost:8082/visaFT/help.html')"
+				style="padding-right: 10px;padding-top: 5px;width: 20px; height: 20px; cursor: pointer;"
+				title="click to get help" /></h2>
 	</div>
-	</br>
+
+		
+	</div>
+	
 
 
-	<form id="frontend" method="post">
+	<form id="frontend" method="post"style="background-color:#ffe39f">
 
-
+	<table border="0" width="50%" align="center">
+					</br>	<h5>
+			<font size="3" color="#3385FF"> <center>The easiest way to transfer money to a Visa
+				card </center></font>
+		</h5>
+	
+						<tr>
+						<td width="16.6%">	<img src="images/highlighted1.png" alt="Mountain View"
+										style="width: 150px; height: 68px;">							
+							</td>
+							<td  width="16.6%">	<img src="images/highlighted2.png" alt="Mountain View"
+										style="width: 150px; height: 68px">							
+							</td>
+							<td  width="16.6%">	<img src="images/m3.png" alt="Mountain View"
+										style="width: 150px; height: 68px;">						
+							</td>
+						</tr>
+						<tr>
+						<td  width="16.6%" ><b><font color="#3385FF">Send Money</font></b></td>
+						<td  width="16.6%"><b><font color="#3385FF">Receive Money</font></b></td>
+						<td  width="16.6%"><b><font color="#3385FF">Transfer Money</font></b></td>
+						</tr>
+					</table>
+					<br>
 		<div style="text-align: center">
 			<h5>
-				</br> <font size="2"> The easiest way to transfer money to a Visa
-					card </br> </br> Step 3 of 3- Transfer Money:
+				</br> <font size="2">Step 3 of 3- Transfer Money:
 				</font>
 				<h5>
+		</br>
 
-					<div style="float: left; margin-left: 25px">
-						<table border="0" width="100%">
-							<th align="center">
-							<tr>
-								<td>
-
-
-									<p
-										style="border: 1px solid black; padding: 10px 10px; font-size: 10pt;">
-										<b>Simple steps to transfer money to a Visa card</b></br>
-										</br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 1: Enter Sender
-										Details.</br>
-										</br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 2: Enter Recipient's
-										Visa Card Number.</br>
-										</br> <img src="images/arrow.png" alt="Mountain View"
-											style="width: 20px; height: 18px">&nbsp;
-										<mark style="background-color: #3385FF;color: white;">Step
-										3: Enter the Amount and transfer the money!</mark>
-									</p>
-									</br>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<div style="float: left">
-						<table border="0" width="100%">
-
-							<tr>
-								<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-							</tr>
-						</table>
-					</div>
+					
 					<div style="text-align: left">
-						<table border="0" align="left" width="20%">
+					<table border="0" align="center" width="25%" style="border: 1px solid grey; ">		
 							<tr>
 								<td>&nbsp;</td>
 							</tr>
@@ -119,14 +102,15 @@
 							<tr>
 								<td>&nbsp;</td>
 							</tr>
-							<tr>
-							
-						<td align="right">Pull Money(AFT): <input type="checkbox"
+							<tr></table>
+							</br>
+							<table border="0" width="55%" align="center">
+						<td align="right">Pull Money: <input type="checkbox"
 								id="cbxShowHideAFT" name="requestAFT" value="requestAFT"
 								style="cursor: pointer;" title="show AFT Request and Response";>
 								&nbsp;
 							</td>
-							<td>Push Money(OCT): <input type="checkbox"
+							<td>Push Money: <input type="checkbox"
 								id="cbxShowHideOCT" name="requestOCT" value="requestOCT"
 								style="cursor: pointer;" title="show OCT Request and Response";>
 								</br>
@@ -136,8 +120,8 @@
 						
 						</table>
 						
-
 					</div>
+			
 
 
 					</select> </select> </br>
@@ -147,52 +131,73 @@
 
 					</div>
 	</form>
-
-	<script type="text/javascript"></script>
-
-	</br>
-
+	<hr noshade size=3 width="80%">
+		
+		</div>
+		
 	</div>
-	</div>
-	<div id="divshowResponseAFT" style="display: none; margin-left: 200px">
-		<table border="0" width="100%">
-			<th align="left">X-Pay-Token:
+	<div id="divshowResponseAFT" style="display: none; margin-left: 10px">
+		<table border="0" width="80%" align="center"> 
+		<td><b>API Name: Pull Money(AFT), Push Money(OCT)</b></td>
+				<td></td>
+				</tr>
+				<tr>
+				<td></td>
+				<td></td>
+				</tr>
+				<tr>
+				<td></td>
+				<td></td>
+				</tr>
+			
 			<tr>
-				<td width="50%"><textarea rows="2" cols="90"
-						id="requestAftHeader" style="resize: none; scroll: true;"></textarea></td>
+				<td>X-Pay-Token:</td>
+				<td></td>
+				</tr>			
+			<tr>
+				<td width="50%"><textarea rows="2" cols="80"
+						id="requestAftHeader" style="resize: none; scroll: true;background-color:#E6E6D8"></textarea></td>
 				<td width="50%"></td>
 
 			</tr>
 		</table>
-		<table border="0" width="100%">
-			<th>Request(AFT):
-			<th>Response(AFT):
+		<table border="0"align="center" width="80%">
+		<tr>
+				<td>Request(Pull Money):</td>
+				<td>Response(Pull Money):</td>
+				</tr>
+			
 			<tr>
-				<td><textarea rows="15" cols="90" id="requestAft"
-						style="resize: none; scroll: true;"></textarea></td>
-				<td><textarea rows="15" cols="90" id="responseAft"
-						style="resize: none; scroll: true;"></textarea></td>
+				<td><textarea rows="15" cols="80" id="requestAft"
+						style="resize: none; scroll: true;background-color:#E6E6D8"></textarea></td>
+				<td><textarea rows="15" cols="80" id="responseAft"
+						style="resize: none; scroll: true;background-color:#E6E6D8"></textarea></td>
 			</tr>
 		</table>
 	</div>
-	</br>
-	<div id="divshowResponseOCT" style="display: none; margin-left: 200px">
-		<table border="0" width="100%" align="center">
-			<th align="left">X-Pay-Token:
+	</br>		
+	<div id="divshowResponseOCT" style="display: none; margin-left: 10px">
+		<table border="0" width="80%" align="center">			
 			<tr>
-				<td width="50%"><textarea rows="2" cols="90"
-						id="requestOCTHeader" style="resize: none; scroll: true;"></textarea></td>
+				<td>X-Pay-Token:</td>
+				<td></td>
+				</tr>
+			<tr>
+				<td width="50%"><textarea rows="2" cols="80"
+						id="requestOCTHeader" style="resize: none; scroll: true;background-color:#E6E6D8"></textarea></td>
 				<td width="50%"></td>
 			</tr>
 		</table>
-		<table border="0" width="100%" align="center">
-			<th>Request(OCT):
-			<th>Response(OCT):
+		<table border="0" width="80%" align="center">
 			<tr>
-				<td><textarea rows="15" cols="90" id="requestOCT"
-						style="resize: none; scroll: true;"></textarea></td>
-				<td><textarea rows="15" cols="90" id="responseOCT"
-						style="resize: none; scroll: true;"></textarea></td>
+				<td>Request(Push Money):</td>
+				<td>Response(Push Money):</td>
+				</tr>
+			<tr>
+				<td><textarea rows="15" cols="80" id="requestOCT"
+						style="resize: none; scroll: true;background-color:#E6E6D8"></textarea></td>
+				<td><textarea rows="15" cols="80" id="responseOCT"
+						style="resize: none; scroll: true;background-color:#E6E6D8"></textarea></td>
 			</tr>
 		</table>
 

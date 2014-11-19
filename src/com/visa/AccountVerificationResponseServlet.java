@@ -1,6 +1,7 @@
 package com.visa;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.vdp.Algorithm;
 import com.vdp.util.VdpUtility;
 import com.visa.config.ConfigValues;
 
@@ -37,60 +39,54 @@ public class AccountVerificationResponseServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		
-		//String payload = "{    \"SystemsTraceAuditNumber\": 701050,    \"RetrievalReferenceNumber\": \"405012701050\",    \"AcquiringBin\": 409999,    \"AcquirerCountryCode\": \"101\",    \"PrimaryAccountNumber\": \"4957030420210462\",    \"CardExpiryDate\": \"2015-10\",    \"CardCvv2Value\": \"022\",    \"Avs\": {        \"Street\": \"900 Metro Center Blv\",        \"PostalCode\": \"94404\"    },    \"CardAcceptor\": {        \"Name\": \"ABC\",        \"TerminalId\": \"123\",        \"IdCode\": \"45678\",        \"Address\": {            \"City\": \"San Francisco\",            \"State\": \"CA\",            \"County\": \"075\",            \"Country\": \"USA\",            \"ZipCode\": \"94404\"        }    }}";
-		String payload = (String)new ConfigValues().getPropValues().get("payloadACNV");
-		
-		try {
-			JSONObject jsonObject = new JSONObject(payload);
-			
-			jsonObject.put("PrimaryAccountNumber", request.getParameter("accNo"));
-		/*	jsonObject
-			.put("CardExpiryDate", request.getParameter("cardExpiryDate"));
-	       
-	         jsonObject.put("Name", request.getParameter("name"));*/	        
 	
+		String payload = (String)new ConfigValues().getPropValues().get("payloadACNV");
+		String newpayload="";
+		String endpoint="";
+		String res="";
+		String pathACNV="";
+		String token="";
 		
-/*
-			CreditCardValidator ccv = new CreditCardValidator();
-			if (ccv.getCardID(request.getParameter("PAN")) == -1) {
-
+		
+		//get apiKey
+		String apiKey = null;
 				
+		HttpSession session = request.getSession();
+		
+		apiKey = (String)session.getAttribute("apiKey");
+		
+		if(apiKey == null){
+			apiKey = (String)new ConfigValues().getPropValues().get("apiKey");
+		}
+		
+		//get sharedSecret
+		String sharedSecret = null;
+		
+		HttpSession session1 = request.getSession();
+		
+		sharedSecret = (String)session1.getAttribute("sharedSecret");
+		
+		if(sharedSecret == null){
+			sharedSecret = (String)new ConfigValues().getPropValues().get("sharedSecret");
+		}
+		
+		System.out.println("apiKey: "+apiKey+"  sharedSecret: "+sharedSecret);
+		try {
 			
-				 response.getWriter().write("This card is invalid or unsupported!"); 
-				  
-				System.out.println("This card is invalid or unsupported!");
-				return;
-
-			} else {
-
-				if (!ccv.validCC(request.getParameter("PAN"))) {
-					response.getWriter().write("Invalid "+ ccv.getCardName(ccv.getCardID(request.getParameter("PAN")))+ " card.");
-					
-					return;
-				} else {
-
-					//response.getWriter().write("This is a valid "	+ ccv.getCardName(ccv.getCardID(request.getParameter("PAN")))+ " card.");
-				}
-
-			}
-
-			if (!request.getParameter("PAN").startsWith("4")) {
-				response.getWriter().write("We found that this is not a Visa card. You can still pay with this card, but currently we are unable to verify it.");
-				return;
-			}*/
+			JSONObject jsonObject = new JSONObject(payload);			
+			jsonObject.put("PrimaryAccountNumber", request.getParameter("accNo"));	
 		
 			NetClientPost client = new NetClientPost();
-			String newpayload = jsonObject.toString();
-			//String url = "https://qa.api.visa.com/cva/cce/AccountVerification?apikey=YU61R615DKXQP195HVKY21qjHi4NqQivhwWurF7rOHJJQUl-0";
-			String url = (String)new ConfigValues().getPropValues().get("urlACNV") + "?apikey=" + (String)new ConfigValues().getPropValues().get("apiKey");
-			
-			String res = client.getResponse(newpayload,
-					(String)new ConfigValues().getPropValues().get("pathACNV"), url);
+		    newpayload = jsonObject.toString();
+		    endpoint = (String)new ConfigValues().getPropValues().get("urlACNV") + "?apikey=" + (String)new ConfigValues().getPropValues().get("apiKey");
+		    pathACNV = (String)new ConfigValues().getPropValues().get("pathACNV");
+		    token = new Algorithm().generateXpaytoken(newpayload, pathACNV, apiKey, sharedSecret);
+		    res = client.getResponse(newpayload,
+					endpoint,token);
 			if(res!=null)
 			{
-				HttpSession session = request.getSession();
-				session.setAttribute("senderPAN", request.getParameter("accNo"));
+				HttpSession session11 = request.getSession();
+				session11.setAttribute("senderPAN", request.getParameter("accNo"));
 			}
 			
 			if(res.startsWith("{"))		
@@ -99,20 +95,23 @@ public class AccountVerificationResponseServlet extends HttpServlet {
 			
 			
 			}
-			
-			
 				
-				 response.getWriter().write(res); 	
+			JSONObject outputJson=new JSONObject();
+			PrintWriter out = response.getWriter();
+			outputJson.put("response",res);
+			outputJson.put("token",token);
+			response.setContentType("application/json");
+			out.print(outputJson);
 			
 			
 		}
 		catch(IOException e)		
 		{
-			 response.getWriter().write(e.getMessage()); 
+			e.printStackTrace();
 		}		
 		catch(Exception e)		
 		{
-			 response.getWriter().write(e.getMessage()); 
+			e.printStackTrace();
 		}
 		
 		

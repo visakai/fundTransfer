@@ -39,43 +39,23 @@ public class AccountVerificationRequestServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		//String payload = "{    \"SystemsTraceAuditNumber\": 701050,    \"RetrievalReferenceNumber\": \"405012701050\",    \"AcquiringBin\": 409999,    \"AcquirerCountryCode\": \"101\",    \"PrimaryAccountNumber\": \"4957030420210462\",    \"CardExpiryDate\": \"2015-10\",    \"CardCvv2Value\": \"022\",    \"Avs\": {        \"Street\": \"900 Metro Center Blv\",        \"PostalCode\": \"94404\"    },    \"CardAcceptor\": {        \"Name\": \"ABC\",        \"TerminalId\": \"123\",        \"IdCode\": \"45678\",        \"Address\": {            \"City\": \"San Francisco\",            \"State\": \"CA\",            \"County\": \"075\",            \"Country\": \"USA\",            \"ZipCode\": \"94404\"        }    }}";
-
+		
 		String payload = (String)new ConfigValues().getPropValues().get("payloadACNV");
-		
-		
-
+		String newpayload="";
+		String jsonRequest="";
+	
 		try {
 
 			JSONObject jsonObject = new JSONObject(payload);
-			jsonObject.put("PrimaryAccountNumber", request.getParameter("accNo"));
-		/*	jsonObject
-			.put("CardExpiryDate", request.getParameter("cardExpiryDate"));
+			jsonObject.put("PrimaryAccountNumber", request.getParameter("accNo"));		   
+			jsonRequest= VdpUtility.convertToPrettyJsonstring(jsonObject.toString());    
 	       
-	         jsonObject.put("Name", request.getParameter("name"));*/	        
-	     	 
-		
-	       
-	        
-	        String newpayload = jsonObject.toString();		   
-			  
-			  ObjectMapper mapper = new ObjectMapper();
-			  Object json =  mapper.readValue(newpayload, Object.class);
-				//and then write it out with indentation:
-
-			 String indented = mapper.defaultPrettyPrintingWriter().writeValueAsString(json);
-			   
-			   response.setContentType("text/Json");  
-			   response.setCharacterEncoding("UTF-8"); 
-			   response.getWriter().write(indented); 
-			   System.out.println("Request of AV" +indented);
-			   
-	
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
+		response.getWriter().write(jsonRequest);
 		
 		
 	}
@@ -85,40 +65,7 @@ public class AccountVerificationRequestServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		String token="";
-		try {
-
-			//String payload = "{    \"SystemsTraceAuditNumber\": 701050,    \"RetrievalReferenceNumber\": \"405012701050\",    \"AcquiringBin\": 409999,    \"AcquirerCountryCode\": \"101\",    \"PrimaryAccountNumber\": \"4957030420210462\",    \"CardExpiryDate\": \"2015-10\",    \"CardCvv2Value\": \"022\",    \"Avs\": {        \"Street\": \"900 Metro Center Blv\",        \"PostalCode\": \"94404\"    },    \"CardAcceptor\": {        \"Name\": \"ABC\",        \"TerminalId\": \"123\",        \"IdCode\": \"45678\",        \"Address\": {            \"City\": \"San Francisco\",            \"State\": \"CA\",            \"County\": \"075\",            \"Country\": \"USA\",            \"ZipCode\": \"94404\"        }    }}";
-			String payload = (String)new ConfigValues().getPropValues().get("payloadACNV");
-			
-			JSONObject jsonObject = new JSONObject(payload);
-			jsonObject.put("PrimaryAccountNumber", request.getParameter("accNo"));
-				        
-	        String newpayload = jsonObject.toString();
-	        
-	        String pathACNV = (String)new ConfigValues().getPropValues().get("pathACNV");
-	      
-			try {
-				 token = new Algorithm().generateXpaytoken(newpayload, pathACNV);
-			} catch (SignatureException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			   
-		
-			   
 	
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
-		
-		
-		
-
-		
-		response.getWriter().write(token);
 	}
 
 }

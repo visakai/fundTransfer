@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 public class ConfigValues {
 
 	
@@ -34,10 +37,13 @@ public class ConfigValues {
 		}
  
 		
+		
  
 		// get the property value and print it out
 		result.put("apiKey", prop.getProperty("apiKey"));
+		
 		result.put("sharedSecret", prop.getProperty("sharedSecret"));
+		
 		
 		result.put("payloadACNV", prop.getProperty("payloadACNV"));
 		result.put("payloadACNL", prop.getProperty("payloadACNL"));

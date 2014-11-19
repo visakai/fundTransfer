@@ -1,6 +1,7 @@
 package com.visa;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.security.SignatureException;
 
@@ -55,35 +56,72 @@ public class AFTresponseServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 			
-		 try{
-			 
-			 //String payload=	"{\"SystemsTraceAuditNumber\": 300259,  \"RetrievalReferenceNumber\": \"407509300259\",  \"DateAndTimeLocalTransaction\": \"2021-10-26T21:32:52\",  \"AcquiringBin\": 409999,  \"AcquirerCountryCode\": \"101\",  \"SenderPrimaryAccountNumber\": \"4005520000011126\",  \"SenderCardExpiryDate\": \"2013-03\",  \"SenderCurrencyCode\": \"USD\",  \"Amount\": \"112.00\",  \"Surcharge\": \"2.00\",  \"Cavv\": \"0000010926000071934977253000000000000000\",  \"ForeignExchangeFeeTransaction\": \"10.00\",  \"BusinessApplicationID\": \"AA\",  \"MerchantCategoryCode\": 6012,  \"CardAcceptor\": {    \"Name\": \"Acceptor 1\",    \"TerminalId\": \"365539\",    \"IdCode\": \"VMT200911026070\",    \"Address\": {      \"State\": \"CA\",      \"County\": \"081\",      \"Country\": \"USA\",      \"ZipCode\": \"94404\"    }  },  \"MagneticStripeData\": {    \"track1Data\": \"1010101010101010101010101010\"  },  \"PointOfServiceData\": {    \"PanEntryMode\": \"90\",    \"PosConditionCode\": \"0\",    \"MotoECIIndicator\": \"0\"  },  \"PointOfServiceCapability\": {    \"PosTerminalType\": \"4\",    \"PosTerminalEntryCapability\": \"2\"},  \"FeeProgramIndicator\": \"123\"}";
-			 String payload= (String)new ConfigValues().getPropValues().get("payloadAFT");
-			 JSONObject jsonObject = new JSONObject(payload);		 
-			 jsonObject.put("Amount", request.getParameter("amount"));	 
-			 
-			 HttpSession session = request.getSession();
-				String senderPAN=(String)session.getAttribute("senderPAN");
-				
-				if(senderPAN != null){
-					jsonObject.put("SenderPrimaryAccountNumber",senderPAN);
-				}
-				
+		
+		String payload= (String)new ConfigValues().getPropValues().get("payloadAFT");
+	    JSONObject jsonObject;
+	    String senderPAN=null;
+	    String res="";
+	    String endpoint="";
+	    String token="";
+	    String newpayload="";
+	    
+	    
+	  //get apiKey
+	  		String apiKey = null;
+	  				
+	  		HttpSession session = request.getSession();
+	  		
+	  		apiKey = (String)session.getAttribute("apiKey");
+	  		
+	  		if(apiKey == null){
+	  			apiKey = (String)new ConfigValues().getPropValues().get("apiKey");
+	  		}
+	  		
+	  		//get sharedSecret
+	  		String sharedSecret = null;
+	  		
+	  		HttpSession session1 = request.getSession();
+	  		
+	  		sharedSecret = (String)session1.getAttribute("sharedSecret");
+	  		
+	  		if(sharedSecret == null){
+	  			sharedSecret = (String)new ConfigValues().getPropValues().get("sharedSecret");
+	  		}
+	  		
+	    
+	    
+	    
+		try
+			
+		{
+		
+			 jsonObject = new JSONObject(payload);		 
+			 jsonObject.put("Amount", request.getParameter("amount"));
+			 HttpSession session11 = request.getSession();
+			 senderPAN=(String)session11.getAttribute("senderPAN");			
+			 if(senderPAN != null){
+				jsonObject.put("SenderPrimaryAccountNumber",senderPAN);
+			}
 			 NetClientPost client = new NetClientPost();
-			 String newpayload = jsonObject.toString();
-			 //String url="https://qa.api.visa.com/pm/ft/AccountFundingTransactions?apikey=YU61R615DKXQP195HVKY21qjHi4NqQivhwWurF7rOHJJQUl-0";
-			 String url = (String)new ConfigValues().getPropValues().get("urlAFT") + "?apikey=" + (String)new ConfigValues().getPropValues().get("apiKey");
-				
+			 newpayload = jsonObject.toString();
+			 endpoint = (String)new ConfigValues().getPropValues().get("urlAFT") + "?apikey=" + (String)new ConfigValues().getPropValues().get("apiKey");
+			 token = new Algorithm().generateXpaytoken(newpayload, (String)new ConfigValues().getPropValues().get("pathAFT"), apiKey, sharedSecret);
+			 res = client.getResponse(newpayload, endpoint,token);
+					 
 			 
-			 String res = client.getResponse(newpayload,(String)new ConfigValues().getPropValues().get("pathAFT"),url);
-				if(res.startsWith("{"))		
+			 if(res.startsWith("{"))		
 					
 				{	res= VdpUtility.convertToPrettyJsonstring(res);
 				
 				
 				}
 				
-				 response.getWriter().write(res); 	
+			    JSONObject outputJson=new JSONObject();
+				PrintWriter out = response.getWriter();
+				outputJson.put("response",res);
+				outputJson.put("token",token);
+				response.setContentType("application/json");
+				out.print(outputJson);
 			
 			 
 		  }

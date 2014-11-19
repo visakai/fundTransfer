@@ -8,7 +8,10 @@ import org.json.JSONObject;
 
 
 
+
+
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.SignatureException;
 
 import javax.servlet.ServletException;
@@ -20,6 +23,7 @@ import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
+import com.vdp.Algorithm;
 import com.vdp.service.PaymentService;
 import com.vdp.util.VdpUtility;
 import com.visa.config.ConfigValues;
@@ -40,18 +44,50 @@ public class OCTresponseServlet extends HttpServlet {
 
  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
+	 
+	 String payload="";
+	 String senderPAN=null;
+	 String recipientPAN=null;
+	 String newpayload="";
+	 String endpoint="";
+	 String token="";
+	 String res="";
+	 
+	  //get apiKey
+		String apiKey = null;
+				
+		HttpSession session = request.getSession();
+		
+		apiKey = (String)session.getAttribute("apiKey");
+		
+		if(apiKey == null){
+			apiKey = (String)new ConfigValues().getPropValues().get("apiKey");
+		}
+		
+		//get sharedSecret
+		String sharedSecret = null;
+		
+		HttpSession session1 = request.getSession();
+		
+		sharedSecret = (String)session1.getAttribute("sharedSecret");
+		
+		if(sharedSecret == null){
+			sharedSecret = (String)new ConfigValues().getPropValues().get("sharedSecret");
+		}
+		
+	 
+	 
 	 try{
 		 
-	// String payload ="{\"SystemsTraceAuditNumber\":350420,\"RetrievalReferenceNumber\":\"401010350420\",\"DateAndTimeLocalTransaction\":\"2021-10-26T21:32:52\",\"AcquiringBin\":409999,\"AcquirerCountryCode\":\"101\",\"SenderReference\":\"\",\"SenderAccountNumber\": \"4957030420210454\",\"SenderCountryCode\":\"USA\",\"TransactionCurrency\":\"840\",\"SenderName\":\"John Smith\",\"SenderAddress\":\"44 Market St.\",\"SenderCity\":\"San Francisco\",\"SenderStateCode\":\"CA\",\"RecipientCardPrimaryAccountNumber\":\"4957030005709912\",\"Amount\":\"200.00\",\"BusinessApplicationID\":\"AA\",\"MerchantCategoryCode\":6012,\"TransactionIdentifier\":234234322342343,\"SourceOfFunds\":\"03\",\"CardAcceptor\":{\"Name\":\"John Smith\",\"TerminalId\":\"13655392\",\"IdCode\":\"VMT200911026070\",\"Address\":{\"State\":\"CA\",\"County\":\"081\",\"Country\":\"USA\",\"ZipCode\":\"94105\" }},\"FeeProgramIndicator\":\"123\"}";
-		 String payload = (String)new ConfigValues().getPropValues().get("payloadOCT");
+	
+		 payload = (String)new ConfigValues().getPropValues().get("payloadOCT");
 		 
 		 JSONObject jsonObject = new JSONObject(payload);		 
 	 jsonObject.put("Amount", request.getParameter("amount"));	
 	 
-	 HttpSession session = request.getSession();
-		String senderPAN=(String)session.getAttribute("senderPAN");
-		String recipientPAN=(String)session.getAttribute("recipientPAN");
+	 HttpSession session11 = request.getSession();
+	   senderPAN=(String)session11.getAttribute("senderPAN");
+		 recipientPAN=(String)session11.getAttribute("recipientPAN");
 		if(senderPAN != null){
 			jsonObject.put("SenderAccountNumber",senderPAN);
 		}
@@ -61,12 +97,11 @@ public class OCTresponseServlet extends HttpServlet {
 		
 	 
 	 NetClientPost client = new NetClientPost();
-	 String newpayload = jsonObject.toString();
-	 //String url="https://qa.api.visa.com/pm/ft/OriginalCreditTransactions?apikey=YU61R615DKXQP195HVKY21qjHi4NqQivhwWurF7rOHJJQUl-0";
-	 String url = (String)new ConfigValues().getPropValues().get("urlOCT") + "?apikey=" + (String)new ConfigValues().getPropValues().get("apiKey");
-		
+	 newpayload = jsonObject.toString();	
+	 endpoint = (String)new ConfigValues().getPropValues().get("urlOCT") + "?apikey=" + (String)new ConfigValues().getPropValues().get("apiKey");
+	 token = new Algorithm().generateXpaytoken(newpayload, (String)new ConfigValues().getPropValues().get("pathOCT"), apiKey, sharedSecret);	
 	 
-	 String res = client.getResponse(newpayload,(String)new ConfigValues().getPropValues().get("pathOCT"),url);
+	 res = client.getResponse(newpayload,endpoint, token);
 		if(res.startsWith("{"))		
 			
 		{	res= VdpUtility.convertToPrettyJsonstring(res);
@@ -74,7 +109,13 @@ public class OCTresponseServlet extends HttpServlet {
 		
 		}
 		
-		 response.getWriter().write(res); 	
+		   JSONObject outputJson=new JSONObject();
+			PrintWriter out = response.getWriter();
+			outputJson.put("response",res);
+			outputJson.put("token",token);
+			response.setContentType("application/json");
+			out.print(outputJson);
+			
 	
 	 
   }

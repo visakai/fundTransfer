@@ -1,6 +1,7 @@
 package com.visa;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.SignatureException;
 
 import javax.servlet.ServletException;
@@ -17,6 +18,8 @@ import org.json.JSONObject;
 
 
 
+
+import com.vdp.Algorithm;
 import com.vdp.service.PaymentService;
 import com.vdp.util.RequestUtil;
 import com.vdp.util.VdpUtility;
@@ -49,39 +52,72 @@ public class AccountlookupresponseServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	
-
+		String token="";
+		String payload="";
+		String newpayload="";
+		String endpoint="";
+		String res="";
+		
+		
+		//get apiKey
+				String apiKey = null;
+						
+				HttpSession session = request.getSession();
+				
+				apiKey = (String)session.getAttribute("apiKey");
+				
+				if(apiKey == null){
+					apiKey = (String)new ConfigValues().getPropValues().get("apiKey");
+				}
+				
+				//get sharedSecret
+				String sharedSecret = null;
+				
+				HttpSession session1 = request.getSession();
+				
+				sharedSecret = (String)session1.getAttribute("sharedSecret");
+				
+				if(sharedSecret == null){
+					sharedSecret = (String)new ConfigValues().getPropValues().get("sharedSecret");
+				}
+				
+		
 		
 		try {
-			//String payload =	"{\"SystemsTraceAuditNumber\":455690,\"RetrievalReferenceNumber\": \"405012455690\",\"AcquiringBin\": 409999,\"AcquirerCountryCode\": \"101\",\"PrimaryAccountNumber\":\"4895070000008881\"}";
-			String payload = (String)new ConfigValues().getPropValues().get("payloadACNL");
+						
+			payload = (String)new ConfigValues().getPropValues().get("payloadACNL");
 			JSONObject jsonObject = new JSONObject(payload);
 			jsonObject.put("PrimaryAccountNumber", request.getParameter("recipientCardNumber"));
 		
 			NetClientPost client = new NetClientPost();
-			String newpayload = jsonObject.toString();
+		    newpayload = jsonObject.toString(); //pay load After user input			
 			
-			//String url="https://qa.api.visa.com/cva/cf/AccountLookup?apikey=YU61R615DKXQP195HVKY21qjHi4NqQivhwWurF7rOHJJQUl-0";
-			String url = (String)new ConfigValues().getPropValues().get("urlACNL") + "?apikey=" + (String)new ConfigValues().getPropValues().get("apiKey");
+			endpoint = (String)new ConfigValues().getPropValues().get("urlACNL") + "?apikey=" + (String)new ConfigValues().getPropValues().get("apiKey");
+			token = new Algorithm().generateXpaytoken(newpayload, (String)new ConfigValues().getPropValues().get("pathACNL"), apiKey, sharedSecret );
 			
-			String res = client.getResponse(newpayload, (String)new ConfigValues().getPropValues().get("pathACNL"),url);
-			System.out.println("response" +res);
-			
+			res = client.getResponse(newpayload, endpoint,token);
+					
 			if(res!=null)
 			{
-				HttpSession session = request.getSession();
-				session.setAttribute("recipientPAN", request.getParameter("recipientCardNumber"));
+				HttpSession session11 = request.getSession();
+				session11.setAttribute("recipientPAN", request.getParameter("recipientCardNumber"));
 			}
 			
-			if(res.startsWith("{"))		
+			if(res.startsWith("{"))		//To check if response is JSON
 			
-			{	res= VdpUtility.convertToPrettyJsonstring(res);
+			{	res= VdpUtility.convertToPrettyJsonstring(res); 
 			
 			
-			}
+			}			
 			
-			System.out.println(res);
+			JSONObject outputJson=new JSONObject();
+			PrintWriter out = response.getWriter();
+			outputJson.put("response",res);
+			outputJson.put("token",token);
+			response.setContentType("application/json");
+			out.print(outputJson);
+		
 			
-			 response.getWriter().write(res); 	
 		}
 		catch(IOException e)		
 		{
