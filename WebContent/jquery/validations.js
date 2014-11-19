@@ -51,7 +51,7 @@ $(document).ready(function() {
 				$('#response').html(responseText.response); 				  
 				var responseRegExp = new RegExp("TransactionIdentifier");
 				if (responseRegExp.test(responseText.response)) {
-					$( "#next" ).prop( "disabled", false ).css({backgroundColor:"#3385FF"});
+					$( "#next" ).prop( "disabled", false ).css({backgroundColor: "#ecb939", color: "#011f4b"});
 				}else{
 					$( "#next" ).prop( "disabled", true ).css({backgroundColor:"#909090"});
 				}
@@ -117,7 +117,7 @@ $("#adminsubmit").click(function(){
 
 				// on page submit 
 				submitHandler : function() {
-					$( "#next" ).prop( "disabled", false ).css({backgroundColor:"#3385FF"});
+					$( "#next" ).prop( "disabled", false ).css({backgroundColor: "#ecb939", color: "#011f4b"});
 					var recipientCardNumber =$('#recipientCardNumber').val();   	 
 					 	
 					$.get('AccountlookuprequestServlet',{recipientCardNumber:recipientCardNumber},function(responseText) {    	
@@ -130,7 +130,7 @@ $("#adminsubmit").click(function(){
 						$('#requestACTLHeader').html(responseText.token);    
 						var responseRegExp = new RegExp("CardProductTypeCode");
 						if (responseRegExp.test(responseText.response)) {
-							$( "#next" ).prop( "disabled", false ).css({backgroundColor:"#3385FF"});
+							$( "#next" ).prop( "disabled", false ).css({backgroundColor: "#ecb939", color: "#011f4b"});
 						}else{
 							$( "#next" ).prop( "disabled", true ).css({backgroundColor:"#909090"});
 						}
