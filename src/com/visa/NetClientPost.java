@@ -27,6 +27,13 @@ public class NetClientPost {
 
 	
 	public String getResponse(String payload,String endpoint,String xpaytoken) throws SignatureException, IOException {
+		
+
+		System.setProperty("javax.net.ssl.trustStore", getClass().getClassLoader().getResource("sandbox.jks").getFile());
+          System.setProperty("javax.net.ssl.trustStorePassword", "changeit");
+
+		
+		
 		HttpsURLConnection conn= null;
 					
 			URL url = new URL(endpoint);		
