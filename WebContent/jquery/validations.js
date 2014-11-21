@@ -51,7 +51,7 @@ $(document).ready(function() {
 				$('#response').html(responseText.response); 				  
 				var responseRegExp = new RegExp("TransactionIdentifier");
 				if (responseRegExp.test(responseText.response)) {
-					$( "#next" ).prop( "disabled", false ).css({backgroundColor: "#ecb939", color: "#011f4b"});
+					$( "#next" ).prop( "disabled", false ).css({backgroundColor: "#e8702a", color: "white"});
 				}else{
 					$( "#next" ).prop( "disabled", true ).css({backgroundColor:"#909090"});
 				}
@@ -75,12 +75,16 @@ $(document).ready(function() {
                  resizable: false,
                    height:    200,
                    width:     600,
-                   background: "#ff0000"
-                 }).prev(".ui-dialog-titlebar").css("background","#3385FF");
+                   background: "#ff0000"  
+                 }).prev(".ui-dialog-titlebar").css("background","#e8702a");
                  $("#adminConsole").prev().css({"color":"white"});
 
                  $( "#admin" ).click(function() {
                  $( "#adminConsole" ).dialog( "open" );
+                 
+                 
+                 $("#adminConsole").prev().css({"font-size":"80%"});
+                 
                  });
                  
                  $("#closeWin").click(function() { 
@@ -130,7 +134,7 @@ $("#adminsubmit").click(function(){
 						$('#requestACTLHeader').html(responseText.token);    
 						var responseRegExp = new RegExp("CardProductTypeCode");
 						if (responseRegExp.test(responseText.response)) {
-							$( "#next" ).prop( "disabled", false ).css({backgroundColor: "#ecb939", color: "#011f4b"});
+							$( "#next" ).prop( "disabled", false ).css({backgroundColor: "#e8702a", color: "white"});
 						}else{
 							$( "#next" ).prop( "disabled", true ).css({backgroundColor:"#909090"});
 						}

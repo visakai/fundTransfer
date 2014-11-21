@@ -27,85 +27,107 @@
 
 <body link="#FFFF99" vlink="#FFFF99" alink="#FFFF99">
 
-	<div id="header" style="align: center; background-color:#011f4b">
+	<div id="header" style="align: center; background-color:#011f4b;">
 </br>
-		<h2>Funds Transfer App-Triangle Corp.<input type="image" src="images/help1.gif"
+		<h2 style="font-family: Source Code Pro">Funds Transfer App-Triangle Corp.<input type="image" src="images/help1.gif"
 				align="right" alt="Submit Button" id="transferAmt"
 				onclick="window.open('http://localhost:8082/visaFT/help.html')"
 				style="padding-right: 10px;padding-top: 5px;width: 20px; height: 20px; cursor: pointer;"
 				title="click to get help" /></h2>
 				
-				<font size="2" color="white" style=""><center>The
+				<font size="2" color="white" style="font-family: Source Code Pro"><center>The
 				easiest way to transfer money to a Visa card</center></font>
 				</br>
+				<h4 style="margin-right:250px;margin-left:250px;background-color:#e8702a" color="#e8702a;"><font color="#e8702a">Test</font></h4>
 	</div>
 
 	
 	<div id="adminConsole" width="100%" title="Admin Console"
-		style="font-size: 10pt";>
+		style="font-size: 10pt; background-color:#d2d4dc; font-family: Source Code Pro">
 		<span id="ui-id-1" class="ui-dialog-title"></span>
 		<form class="form" action="#" id="adminConsole">
 			</br>
-			<label><b>Api-Key:</b></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="text" id="apiKey" size="50" placeholder="" value="YU61R615DKXQP195HVKY21qjHi4NqQivhwWurF7rOHJJQUl-0"/></br>
-			</br> <label><b>Shared Secret:</b></label>&nbsp;&nbsp;&nbsp;&nbsp;<input
-				type="text" id="sharedSecret"size="50"  placeholder="" value="@xTW5Ux4boHPKwp8cV@P3zU#0gdtM5QmBp/OTCXx"/></br>
-			</br> 
-			<input type="button" id="submit" value="submit" />&nbsp;&nbsp;&nbsp;&nbsp;<input
-							type="reset" value="Reset" id="clearSender">
+			<table border="0">
+			<tr>
+			<td align="left"><font family="Source Code Pro">Api-Key:</font></td>
+			<td><input type="text" id="apiKey" size="50" placeholder="" value="061UIYMQ9QE0OH6N5VCR21YvFEKZo2NKTyPNUgGGHH6fz04Xk"/></td>
+			</tr>
+			<tr>
+			<td align="left"><font family="Source Code Pro">Shared Secret:</font></td>
+			<td><input
+				type="text" id="sharedSecret"size="50"  placeholder="" value="8PgE+WUzTE}5qW35B@J21AlZum7D-rfxQ$E-}qF5"/></td>
+			</tr>
+			<tr><td>&nbsp;</td></tr>
+			<tr>
+			<td colspan="2" align="center"><input type="button" id="submit" value="Submit" style="height: 30px; width: 60px;background-color: #e8702a; color: white;" />&nbsp;&nbsp;&nbsp;&nbsp;<input
+							type="reset" value="Reset" id="clearSender" style="height: 30px; width: 60px;background-color: #e8702a; color: white;">
 							</input> &nbsp;&nbsp;&nbsp;&nbsp;<input
-							type="button" value="close"id="closeWin" >
-							</input><br />
+							type="button" value="Close"id="closeWin"style="height: 30px; width: 60px;background-color: #e8702a; color: white;" >
+							</input> </td>
+			</tr>
+			</table>
 		</form>
 	</div>
 	<form id="senderForm" name="senderForm" method="post" action=""
-		style="background:#d2d4dc">
+		style="background:#d2d4dc;margin-right:250px;margin-left:250px;">
 		</br>
 		
 		
-		</br>
+		
 		<table border="0" width="50%" align="center">
 			<tr><td align="center" colspan="5"><input type="button" id="admin" value="Admin&#13;&#10;Console&#13;&#10;"
 				style="  height: 40px; width: 70px; background-color: #e0cda7; color: #011f4b; font-family: Arial, Times, Sans-serif;"></td></tr>
 			<tr>
 
-				<td width="16.6%"><img src="images/m1.png" alt="Mountain View"
-					style="width: 150px; height: 68px;"></td>
-					<td><img src="images/Blue_Arrow.png" alt="Mountain View"
-					style="width: 40px; height: 20px;"></td>
-				<td width="16.6%"><img src="images/highlighted2.png"
-					alt="Mountain View" style="width: 150px; height: 68px"></td>
-					<td><img src="images/Blue_Arrow.png" alt="Mountain View"
-					style="width: 40px; height: 20px;"></td>
-				<td width="16.6%"><img src="images/highlighted3.png"
-					alt="Mountain View" style="width: 150px; height: 68px;"></td>
+				<td width="16.6%">								 		
+				 		<a href="sender.jsp"><img src="images/bankIcon.png" style="width: 80px; height: 65px;"/></a>
+				 </td>
+				
+					<!-- <td><img src="images/Blue_Arrow.png" alt="Mountain View"
+					style="width: 40px; height: 20px;"></td> -->
+					<td></td>
+				<td width="16.6%"><a href="recipient.jsp"><img src="images/bankIcon-green.png" style="width: 80px; height: 65px;"/></a></td>
+				
 			</tr>
 			<tr>
-				<td width="16.6%"><b><font color="#011f4b">Sender</font></b></td>
+			<td width="16.6%" style="font-family: Source Code Pro"><b><font color="#011f4b" size="2px">Update Sender Account</font></b></td>
+			<td></td>
+			<td width="16.6%" style="font-family: Source Code Pro"><b><font color="#011f4b" size="2px">Manage Receivers 
+							</font></b></td>
+			</tr>
+			
+			<tr>
+			
+					<td width="16.6%" colspan="3" align="center"><a href="transfer.jsp"><img src="images/transfer.png" style="width: 100px; height: 100px;"/></a></td>
+					<!-- <td><img src="images/Blue_Arrow.png" alt="Mountain View"
+					style="width: 40px; height: 20px;"></td> -->
+			</tr>
+			
+			<tr>
+				
 							<td></td>
-				<td width="16.6%"><b><font color="#011f4b">Receiver
+				<td width="16.6%" style="font-family: Source Code Pro"><b><font color="#011f4b" size="4px">Money Transfer
 							</font></b></td>
 							<td></td>
-				<td width="16.6%"><b><font color="#011f4b">Money Transfer
-							</font></b></td>
+				
 			</tr>
 		</table>
 		<br>
-		<br>
+
 		
 		
-			<font size="2"> Step 1 of 3- Enter Sender Details:</font>
+			<font size="2" family = "Source Code Pro"> Step 1 of 3- Enter Sender Details:</font>
 			
 
 				</br></br>
 
-				<table border="0" align="center" width="35%"
+				<table border="0" align="center" width="38%"
 					style="border: 1px solid grey;">
 					<tr>
 						<td>&nbsp;</td>
 					</tr>
 					<tr>
-						<td><font size="2">Debit/Credit Card Number: <font color="red">*</font></font></td>
+						<td align="center" padding-bottom=" 225px"><font size="2" family= "Source Code Pro" >Debit/Credit Card Number: <font color="red">*</font></font></td>
 
 						<td align="left"><input type="text" name="accNo" id="accNo"
 							value="4957030001386632"></input>
@@ -122,12 +144,12 @@
 					<tr>
 						<td align="center" colspan="2" width="10%"><input
 							type="submit" value="Verify" id="verify"
-							style="height: 40px; width: 70px; background-color: #ecb939; color: #011f4b; font-family: Arial, Times, Sans-serif">
+							style="height: 40px; width: 70px; background-color: #e8702a; color: white; font-family: Arial, Times, Sans-serif">
 							</input> &nbsp;&nbsp;&nbsp;<input type="button" value="Next" id="next"
 							style="height: 40px; width: 70px; background-color: #3385FF; color: #011f4b; font-family: Arial, Times, Sans-serif"
 							onclick="window.location='recipient.jsp'"> </input>&nbsp;&nbsp;&nbsp;<input
 							type="reset" value="Clear" id="clearSender"
-							style="height: 40px; width: 70px; background-color: #ecb939; color: #011f4b; font-family: Arial, Times, Sans-serif">
+							style="height: 40px; width: 70px; background-color: #e8702a; color: white; font-family: Arial, Times, Sans-serif">
 							</input></td>
 					</tr>
 
@@ -139,17 +161,17 @@
 		<table border="0" width="55%" align="center">
 			<th>
 			<tr>
-				<td ><font size="2">Show Request Response:</font><input
+				<td ><font size="2" family = "Source Code Pro">Show Request Response:</font><input
 					type="checkbox" id="cbxShowHide" name="cbxShowHide" value="request"
 					style="cursor: pointer;" title="show Request and Response";></td>
 			</tr>
 		</table>
-		<hr noshade size=3 width="80%">
+		<hr noshade size=3 width="100%">
 	</form>
 
 
 	<div id="divshowResponse"
-		style="display: none; margin-left: 10px; background-color: white">
+		style="display: none; background-color: white;margin-right:100px;margin-left:100px;">
 
 		<table border="0" width="80%" align="center">
 			<tr>
@@ -179,17 +201,19 @@
 		<table border="0" width="80%" align="center">
 			<tr>
 				<td style="font-size:11px">Request:</td>
-				<td style="font-size:11px">Response:</td>
+				<td style="font-size:11px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Response:</td>
 			</tr>
 
 
 			<tr>
-				<td><textarea rows="20" cols="80" id="request"
+				<td  align="left"><textarea rows="20" cols="80" id="request"
 						style="resize: none; scroll: true; background-color: black ;color:#3bd6c6"></textarea></td>
-				<td><textarea rows="20" cols="80" id="response"
+				<td align="right"><textarea rows="20" cols="80" id="response"
 						style="resize: none; scroll: true; background-color: black ;color:#3bd6c6"></textarea></td>
 			</tr>
 		</table>
+		</br>
+		</br>
 	</div>
 
 </body>
