@@ -1,5 +1,61 @@
+function dropDown(){ 
+$.get('CSVActionServlet',function(responseJson) { 
+    	        $.each(responseJson, function(key, value) {  
+            	//  alert("value",responseJson);
+            	   $("#cardNumber12345").find('option').remove();
+                  for(i=0; i < value.length; i++){
+                       $("#cardNumber12345").append('<option value="'+value[i]+'">'+value[i]+'</option>');
+                    //   alert(value[i]);
+                   }
+              
+              // alert("valueaaaaa",key);
+                });
+        });};
+
 $(document).ready(function() {	
-	$( "#next" ).prop( "disabled", true ).css({backgroundColor:"#909090"});
+	
+	 $('#showSuccessMsg').hide(); $('#showErrorMsg').hide();
+	 $('#username').focus();	
+	 
+	//login page
+	var loginValidator =  $("#loginForm").validate({
+		rules: {		     
+			// mandatory entry
+			username: {required:true},	
+			pwd: {required:true},	
+		},	
+		
+		submitHandler: function(){
+			var userId = $('#username').val();
+			var password = $('#pwd').val();
+			if(userId=="visaguest" && password=="possibilities"){
+				 window.location = "transfer.jsp";
+			}else{
+				$('#invalid').show();
+				$(':input','#loginForm')
+				 .not(':button, :submit, :reset, :hidden')
+				 .val('');		
+				$('#username').focus();				
+			}			
+		}
+		});
+		
+	$('#goback').click(function() {
+        $('#divshowResponse').slideToggle("slow");
+        $('#div1').show();       
+        $('#cbxShowHide').attr('checked', false); 
+ });
+	
+	
+	$('#goback1').click(function() {
+        $('#divshowResponse').slideToggle("slow");
+        $('#div1').show();       
+        $('#cbxShowHideAFT').attr('checked', false); 
+ });
+	
+	
+		
+	//$( "#next" ).prop( "disabled", true ).css({backgroundColor:"#909090"});
 
 	$.validator.addMethod(
 			"alphaNumeric",
@@ -17,6 +73,8 @@ $(document).ready(function() {
 
 	$('#cbxShowHide').click(function(){		
 		this.checked?$('#divshowResponse').show(1000):$('#divshowResponse').hide(1000); //time for show
+		 $('#div1').slideToggle("slow");	
+		 
 	});	
 
 	// modify default settings for validation
@@ -50,10 +108,13 @@ $(document).ready(function() {
 				$('#requestACTVHeader').html(responseText.token);
 				$('#response').html(responseText.response); 				  
 				var responseRegExp = new RegExp("TransactionIdentifier");
-				if (responseRegExp.test(responseText.response)) {
-					$( "#next" ).prop( "disabled", false ).css({backgroundColor: "#e8702a", color: "white"});
+				if (responseRegExp.test(responseText.response)) {					
+					 $('#showSuccessMsg').show();
+
+					//$( "#next" ).prop( "disabled", false ).css({backgroundColor: "#e8702a", color: "white"});
 				}else{
-					$( "#next" ).prop( "disabled", true ).css({backgroundColor:"#909090"});
+					 $('#showErrorMsg').show();
+					//$( "#next" ).prop( "disabled", true ).css({backgroundColor:"#909090"});
 				}
 			});
 
@@ -121,7 +182,7 @@ $("#adminsubmit").click(function(){
 
 				// on page submit 
 				submitHandler : function() {
-					$( "#next" ).prop( "disabled", false ).css({backgroundColor: "#ecb939", color: "#011f4b"});
+				//	$( "#next" ).prop( "disabled", false ).css({backgroundColor: "#ecb939", color: "#011f4b"});
 					var recipientCardNumber =$('#recipientCardNumber').val();   	 
 					 	
 					$.get('AccountlookuprequestServlet',{recipientCardNumber:recipientCardNumber},function(responseText) {    	
@@ -134,9 +195,12 @@ $("#adminsubmit").click(function(){
 						$('#requestACTLHeader').html(responseText.token);    
 						var responseRegExp = new RegExp("CardProductTypeCode");
 						if (responseRegExp.test(responseText.response)) {
-							$( "#next" ).prop( "disabled", false ).css({backgroundColor: "#e8702a", color: "white"});
-						}else{
-							$( "#next" ).prop( "disabled", true ).css({backgroundColor:"#909090"});
+							 $('#showSuccessMsg').show();
+
+								//$( "#next" ).prop( "disabled", false ).css({backgroundColor: "#e8702a", color: "white"});
+							}else{
+								 $('#showErrorMsg').show();
+						//	$( "#next" ).prop( "disabled", true ).css({backgroundColor:"#909090"});
 						}
 					});	
 				}
@@ -180,8 +244,9 @@ $("#adminsubmit").click(function(){
 						$('#responseAft').html(responseText.response);  
 						var responseRegExp = new RegExp("TransactionIdentifier");
 						if (responseRegExp.test(responseText.response)) {
-
 							doOCT();
+						}else{
+							 $('#showErrorMsg').show();
 						} 
 
 					});
@@ -192,18 +257,13 @@ $("#adminsubmit").click(function(){
 
 	$('#cbxShowHideAFT').click(
 			function() {
-				this.checked ? $('#divshowResponseAFT')
+				this.checked ? $('#divshowResponse')
 						.show(1000) : $(
-						'#divshowResponseAFT').hide(
+						'#divshowResponse').hide(
 								1000); //time for show
+						 $('#div1').slideToggle("slow");	
 			});
-	$('#cbxShowHideOCT').click(
-			function() {
-				this.checked ? $('#divshowResponseOCT')
-						.show(1000) : $(
-						'#divshowResponseOCT').hide(
-								1000); //time for show
-			});
+	
 	$("#clearTransfer").click(function() { 
 		transferValidator.resetForm();
 	});		
@@ -241,6 +301,12 @@ $("#adminsubmit").click(function(){
 
 			$('#responseOCT').html(responseText.response);  
 			$('#requestOCTHeader').html(responseText.token);
+			var responseRegExp = new RegExp("TransactionIdentifier");
+			if (responseRegExp.test(responseText.response)) {
+				 $('#showSuccessMsg').show();				
+			}else{
+				 $('#showErrorMsg').show();
+			} 
 
 		});
 

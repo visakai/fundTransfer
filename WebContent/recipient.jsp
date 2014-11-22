@@ -27,7 +27,7 @@
 
 	<div id="header" style="align: center; background-color:#011f4b;">
 </br>
-		<h2 style="font-family: Source Code Pro">Funds Transfer App-Triangle Corp.<input type="image" src="images/help1.gif"
+		<h2 style="font-family: Source Code Pro">Funds Transfer App - Triangle Corp.<input type="image" src="images/help1.gif"
 				align="right" alt="Submit Button" id="transferAmt"
 				onclick="window.open('http://localhost:8082/visaFT/help.html')"
 				style="padding-right: 10px;padding-top: 5px;width: 20px; height: 20px; cursor: pointer;"
@@ -42,6 +42,7 @@
 
 	
 </body>
+<div id="div1">
 	<form id="recipientForm" name="recipientForm" method="post" action="" style="background:#d2d4dc;margin-right:250px;margin-left:250px;">
 	<br/><br/><br/>
 	<table border="0" width="50%" align="center">			
@@ -66,7 +67,7 @@
 			
 			<tr>
 			
-					<td width="16.6%" colspan="3" align="center"><a href="transfer.jsp"><img src="images/transfer.png" style="width: 100px; height: 100px;"/></a></td>
+					<td width="16.6%" colspan="3" align="center"><a href="transfer.jsp"><img src="images/transfer.png" style="width: 130px; height: 130px;"/></a></td>
 					<!-- <td><img src="images/Blue_Arrow.png" alt="Mountain View"
 					style="width: 40px; height: 20px;"></td> -->
 			</tr>
@@ -74,7 +75,7 @@
 			<tr>
 				
 							<td></td>
-				<td width="16.6%" style="font-family: Source Code Pro"><b><font color="#011f4b" size="4px">Money Transfer
+				<td width="16.6%" style="font-family: Source Code Pro"><b><font color="#011f4b" size="4px">TRANSFER MONEY
 							</font></b></td>
 							<td></td>
 				
@@ -86,19 +87,20 @@
 <br>
 		</br>
 				
-<table border="0" align="center" width="40%" style="border: 1px solid grey; ">	
+<table border="0" align="center" width="35%" style="border: 1px solid grey; ">	
 			<tr>
-				<td>
-				
-				</td>
-			</tr>
-			<tr>
-				<td></td>
+			<td style="font-size: 10pt;" width="35%" family = "Source Code Pro" align="left">Recipient Name: </td>
+				<td align="left"><input type="text" size="19" name="recipientName" id="recipientName" value=""/></td>				
 			</tr>
 			
+			
 			<tr>
-			<td style="font-size: 10pt;" width="35%" family = "Source Code Pro" align="center">Recipient Card Number: <font color="red">*</font></td>
-				<td align="left"><input type="text" size="19" name="recipientCardNumber" id="recipientCardNumber" value="4957030001013848"/><div class="myErrors"></div></td>				
+			<td style="font-size: 10pt;" width="35%" family = "Source Code Pro" align="left">Recipient Card Number: <font color="red">*</font></td>
+				<td align="left"><input type="text" size="19" name="recipientCardNumber" id="recipientCardNumber" value="4957030005709912"/><div class="myErrors"></div></td>				
+			</tr>
+			<tr>
+			<td style="font-size: 10pt;" width="35%" family = "Source Code Pro" align="left">Payment Type: </td>
+				<td align="left"><input type="text" size="19" name="paymentType" id="paymentType" value=""/></td>				
 			</tr>
 			
 		
@@ -108,14 +110,11 @@
 			<tr>
 				<td colspan="2"><input type="submit" value="Add" id="add"
 					style="height: 40px; width: 70px; background-color: #e8702a; color: white;font-family: Arial, Times, Sans-serif">
-					</input> <input type="reset" value="Clear" id="clearRecp"
+					</input> <input type="reset" value="Reset" id="clearRecp"
 							style="height: 40px; width: 70px; background-color: #e8702a; color: white; font-family: Arial, Times, Sans-serif">
-						</input><input type="button" value="Previous" id="prev"
-					onclick="window.location='sender.jsp'"
-					style="height: 40px; width: 70px; background-color: #e8702a; color: white; font-family: Arial, Times, Sans-serif">
-					</input> <input type="button" value="Next" id="next"
+						</input><input type="button" value="Next" id="next"
 					onclick="window.location='transfer.jsp'"
-					style="height: 40px; width: 70px; background-color: #3385FF; color: white; font-family: Arial, Times, Sans-serif">
+					style="height: 40px; width: 70px; background-color: #e8702a; color: white;  font-family: Arial, Times, Sans-serif">
 					</input></td><tr><td>&nbsp;</td></tr>
 					
 			</tr>
@@ -123,10 +122,13 @@
 
 		</table>
 		<br/>
+		
+ <div id="showSuccessMsg"><font color="green" family="Source Code Pro"><center>Receiver's Account Added Successfully!</center></font></div>
+  <div id="showErrorMsg"><font color="red" family="Source Code Pro"><center>Failed to add Receiver's Account.<center></font></div>
 		<table border="0" width="55%" align="center">
 			
 			<tr>
-				<td style="font-size: 10pt;font-family = "Source Code Pro"">Show Request Response: <input
+				<td style="font-size: 9pt;font-family:Source Code Pro">Under the hood: <input
 					type="checkbox" id="cbxShowHide" name="cbxShowHide" value="request"
 					style="cursor: pointer;" title="show Request and Response";></td>
 			</tr>
@@ -135,21 +137,29 @@
 		
 			</form>			
 						
+		</div>
+		
+		<form name="showResponseForm" id="showResponseForm" >
 		<div id="divshowResponse" style="display: none; margin-right:100px;margin-left:100px;">
 		<table border="0" width="80%" align="center"> 
 		<tr>
-				<td><font size="2">API Name: Account Lookup</font></td>
-				<td></td>
+				<td style="font-size:13px">API Name: Account Lookup </br></td>
+								<td style="font-size:13px; font-color:red" align="right"><input type="button" id="goback" name="goback" value="Go Back" style="height: 40px; width: 70px; background-color: #e8702a; color: white; font-family: Arial, Times, Sans-serif"></td>
+				
 				</tr>
-				<tr>
+			<tr>
+				<td style="font-size:11px">End Point URL:</td>
 				<td></td>
-				<td></td>
-				</tr>
-				<tr>
-				<td></td>
-				<td></td>
-				</tr>
-			
+			</tr>
+			<tr>
+				<td width="50%"><textarea rows="2" cols="80"						
+						style="resize: none; scroll: true;background-color: black ;color:#3bd6c6">
+						https://sandbox.api.visa.com/cva/cce/AccountLookup/061UIYMQ9QE0OH6N5VCR21YvFEKZo2NKTyPNUgGGHH6fz04Xk</textarea></td>
+				</textarea></td>
+				<td width="50%"></td>
+			</tr>
+				
+		
 			<tr>
 				<td style="font-size:11px">X-Pay-Token:</td>
 				<td></td>
@@ -172,5 +182,6 @@
 			</tr>
 		</table>
 	</div>
+	</form>
 </body>
 </html>
