@@ -157,7 +157,7 @@ public class RequestUtil {
 		OCTrequest.setAcquiringBin(409999);
 		OCTrequest.setAcquirerCountryCode(new Integer(101));
 		OCTrequest.setSenderReference("");
-		OCTrequest.setSenderAccountNumber("4957030420210454");
+		OCTrequest.setSenderAccountNumber("4957030001013830");
 		
 		HttpSession session = req.getSession();
 		String senderPAN=(String)session.getAttribute("senderPAN");
