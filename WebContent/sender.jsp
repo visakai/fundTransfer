@@ -9,8 +9,7 @@
 	type="text/javascript"></script>
 <script
 	src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"
+<script src="${pageContext.request.contextPath}/jquery/jquery-ui.min.js"
 	type="text/javascript"></script>
 <script
 	src="${pageContext.request.contextPath}/jquery/jquery.validate.js"
@@ -29,25 +28,38 @@
 
 	<div id="header" style="align: center; background-color:#011f4b;">
 </br>
-		<h2 style="font-family: Source Code Pro">Funds Transfer App - Triangle Corp.<input type="image" src="images/help1.gif"
-				align="right" alt="Submit Button" id="transferAmt"
-				onclick="window.open('http://localhost:8082/visaFT/help.html')"
-				style="padding-right: 10px;padding-top: 5px;width: 20px; height: 20px; cursor: pointer;"
-				title="click to get help" />
-				
-				
+		<h2 style="font-family: Source Code Pro">Funds Transfer App - Triangle Corp.				
 				</h2>
+				 <div style="float:right; margin-right:50px" >
+        <input type="button" id="admin" value="Update&#13;&#10;Credentials&#13;&#10;"
+				style="  height: 40px; width: 80px; background-color: #e0cda7; color: #011f4b; font-family: Arial, Times, Sans-serif;"></input>
+    	</div>
 				
-				
-			
 				
 				
 				<font size="2" color="white" style="font-family: Source Code Pro"><center>The
 				easiest way to transfer money to a Visa card</center></font>
 				</br>
 				<h4 style="margin-right:250px;margin-left:250px;background-color:#e8702a" color="#e8702a;"><font color="#e8702a">Test</font></h4>
-							
+						
 	</div>
+	<div id="adminConsole"  width="100%" title="Admin Console"
+		style="font-size: 10pt; display: none";>
+		<span id="ui-id-1" class="ui-dialog-title"></span>
+		<form class="form" action="#" id="adminConsole">
+			</br>
+			<label><b>Api-Key:</b></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="text" id="apiKey"size="50" /></br>
+			</br> <label><b>Shared Secret:</b></label>&nbsp;&nbsp;&nbsp;&nbsp;<input
+				type="text" id="sharedSecret" size="50"  /></br>
+			</br> 
+			<input type="button" id="adminsubmit" value="Submit" style="background-color: #e8702a; color: white; height: 30px; width: 60px; cursor: pointer;"/>&nbsp;&nbsp;&nbsp;&nbsp;<input
+							type="reset" value="Reset" id="clearAdmin" style="background-color: #e8702a; color: white; height: 30px; width: 60px; cursor: pointer;">
+							</input> &nbsp;&nbsp;&nbsp;&nbsp;<input
+							type="button" value="Close"id="closeWin" style="background-color: #e8702a; color: white; height: 30px; width: 60px; cursor: pointer;" >
+							</input><br />
+		</form>
+</div>
 
 	
 	
@@ -113,7 +125,7 @@
 						<td align="center" padding-bottom=" 225px"><font size="2" family= "Source Code Pro" >Debit/Credit Card Number: <font color="red">*</font></font></td>
 
 						<td align="left"><input type="text" name="accNo" id="accNo"
-							value="4957030001013830"></input>
+							value="<%=session.getAttribute( "senderPAN" )==null?"":session.getAttribute( "senderPAN" )%>"></input>
 							<div class="myErrors"></div></td>
 					</tr>
 					<tr></tr>
@@ -128,21 +140,21 @@
 						<td align="center" colspan="2" width="10%"><input
 							type="submit" value="Verify" id="verify"
 							style="height: 40px; width: 70px; background-color: #e8702a; color: white; font-family: Arial, Times, Sans-serif">
-							</input> &nbsp;&nbsp;&nbsp;<input type="button" value="Next" id="next"
-							style="height: 40px; width: 70px; background-color: #e8702a; color: white; font-family: Arial, Times, Sans-serif"
-							onclick="window.location='recipient.jsp'"> </input>&nbsp;&nbsp;&nbsp;<input
+							</input>&nbsp;&nbsp;&nbsp;<input
 							type="reset" value="Reset" id="clearSender"
 							style="height: 40px; width: 70px; background-color: #e8702a; color: white; font-family: Arial, Times, Sans-serif">
-							</input></td>
+							</input> &nbsp;&nbsp;&nbsp;<input type="button" value="Next" id="next"
+							style="height: 40px; width: 70px; background-color: #e8702a; color: white; font-family: Arial, Times, Sans-serif"
+							onclick="window.location='recipient.jsp'"> </input></td>
 					</tr>
-
+				<tr><td>&nbsp;</td></tr>
 				</table>
 			</h5>
 		</h5>
 		<br/>
- <div id="showSuccessMsg"><font color="green" family="Source Code Pro"><center>Sender's Account Verified Successfully!</center></font></div>
-  <div id="showErrorMsg"><font color="red" family="Source Code Pro"><center>Failed to verify Sender's Account.<center></font></div>
-		</br>
+ 		<div id="showMsg" style="display: none"></div>
+
+		
 		<table border="0" width="55%" align="center">
 			<th>
 			<tr>
@@ -171,9 +183,9 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td width="50%"><textarea rows="2" cols="80"						
-						style="resize: none; scroll: true;background-color: black ;color:#3bd6c6">061UIYMQ9QE0OH6N5VCR21YvFEKZo2NKTyPNUgGGHH6fz04Xk</textarea></td>
-				</textarea></td>
+				<td width="50%"><textarea readonly rows="1" cols="80"
+						id="apiKeyANCV"
+						style="resize: none; scroll: true;background-color: black ;color:#3bd6c6"></textarea></td>
 				<td width="50%"></td>
 			</tr>
 			
@@ -183,9 +195,9 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td width="50%"><textarea rows="2" cols="80"						
-						style="resize: none; scroll: true;background-color: black ;color:#3bd6c6">8PgE+WUzTE}5qW35B@J21AlZum7D-rfxQ$E-}qF5</textarea></td>
-				</textarea></td>
+				<td width="50%"><textarea readonly rows="1" cols="80"
+						id="sharedSecretANCV"
+						style="resize: none; scroll: true;background-color: black ;color:#3bd6c6"></textarea></td>
 				<td width="50%"></td>
 			</tr>
 			
@@ -195,10 +207,8 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td width="50%"><textarea rows="2" cols="80"						
-						style="resize: none; scroll: true;background-color: black ;color:#3bd6c6">
-						https://sandbox.api.visa.com/cva/cce/AccountVerification/061UIYMQ9QE0OH6N5VCR21YvFEKZo2NKTyPNUgGGHH6fz04Xk</textarea></td>
-				</textarea></td>
+				<td width="50%"><textarea readonly rows="1" cols="80"						
+						style="resize: none; scroll: true;background-color: black ;color:#3bd6c6">https://sandbox.api.visa.com/cva/cce/AccountVerification/</textarea></td>
 				<td width="50%"></td>
 			</tr>
 			
@@ -217,7 +227,7 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td width="50%"><textarea rows="2" cols="80"
+				<td width="50%"><textarea readonly rows="1" cols="80"
 						id="requestACTVHeader"
 						style="resize: none; scroll: true;background-color: black ;color:#3bd6c6"></textarea></td>
 				<td width="50%"></td>
@@ -226,14 +236,14 @@
 		<table border="0" width="80%" align="center">
 			<tr>
 				<td style="font-size:11px">Request:</td>
-				<td style="font-size:11px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Response:</td>
+				<td style="font-size:11px">Response:</td>
 			</tr>
 
 
 			<tr>
-				<td  align="left"><textarea rows="20" cols="80" id="request"
+				<td  align="left"><textarea readonly rows="20" cols="80" id="request"
 						style="resize: none; scroll: true; background-color: black ;color:#3bd6c6"></textarea></td>
-				<td align="right"><textarea rows="20" cols="80" id="response"
+				<td align="right"><textarea readonly rows="20" cols="80" id="response"
 						style="resize: none; scroll: true; background-color: black ;color:#3bd6c6"></textarea></td>
 			</tr>
 		</table>

@@ -97,7 +97,7 @@ public class AccountlookupresponseServlet extends HttpServlet {
 			
 			res = client.getResponse(newpayload, endpoint,token);
 					
-			if(res!=null)
+			if(res!=null  && res.contains("CardProductTypeCode"))
 			{
 				HttpSession session11 = request.getSession();
 				session11.setAttribute("recipientPAN", request.getParameter("recipientCardNumber"));
@@ -114,6 +114,8 @@ public class AccountlookupresponseServlet extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			outputJson.put("response",res);
 			outputJson.put("token",token);
+			outputJson.put("apiKey",apiKey);
+			outputJson.put("sharedSecret",sharedSecret);
 			response.setContentType("application/json");
 			out.print(outputJson);
 		

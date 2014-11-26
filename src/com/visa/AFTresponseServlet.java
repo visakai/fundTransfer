@@ -120,6 +120,8 @@ public class AFTresponseServlet extends HttpServlet {
 				PrintWriter out = response.getWriter();
 				outputJson.put("response",res);
 				outputJson.put("token",token);
+				outputJson.put("apiKey",apiKey);
+				outputJson.put("sharedSecret",sharedSecret);
 				response.setContentType("application/json");
 				out.print(outputJson);
 			

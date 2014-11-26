@@ -48,4 +48,30 @@
     <servlet-name>AccountlookuprequestServlet</servlet-name>
     <url-pattern>/AccountlookuprequestServlet/*</url-pattern>
   </servlet-mapping>
+  
+   <!-- <security-constraint>
+        <display-name>SecurityConstraint</display-name>
+        <web-resource-collection>
+             <web-resource-name>VisaFT</web-resource-name>
+            <url-pattern>/</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>demoAppUser</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+             <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>default</realm-name>
+    </login-config>
+    
+    <security-role>
+        <role-name>demoAppUser</role-name>
+    </security-role> -->
+    
+    
 </web-app>

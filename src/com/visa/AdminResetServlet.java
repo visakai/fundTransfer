@@ -1,36 +1,31 @@
 package com.visa;
 
 import java.io.IOException;
-import java.security.SignatureException;
+import java.io.PrintWriter;
 
-import javax.annotation.security.DeclareRoles;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.vdp.Algorithm;
-import com.vdp.util.RequestUtil;
-import com.vdp.util.VdpUtility;
 import com.visa.config.ConfigValues;
 
 /**
- * Servlet implementation class AccountVerifactionRequestServlet
+ * Servlet implementation class AdminResetServlet
  */
-
-@WebServlet("/AccountVerificationRequestServlet")
-public class AccountVerificationRequestServlet extends HttpServlet {
+@WebServlet("/AdminResetServlet")
+public class AdminResetServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AccountVerificationRequestServlet() {
+    public AdminResetServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,24 +35,37 @@ public class AccountVerificationRequestServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		String apiKey= (String)session.getAttribute("apiKey");
+		String sharedSecret = (String)session.getAttribute("sharedSecret");
 		
 		
-		String payload = (String)new ConfigValues().getPropValues().get("payloadACNV");
-		String newpayload="";
-		String jsonRequest="";
-	
+		if(apiKey!=null ||sharedSecret!=null ){
+			
+						
+			 apiKey = (String)new ConfigValues().getPropValues().get("apiKey");
+			 sharedSecret = (String)new ConfigValues().getPropValues().get("sharedSecret");
+			
+			session.setAttribute("apiKey", apiKey);
+			session.setAttribute("sharedSecret", sharedSecret);
+			
+		
+		}
+		JSONObject outputJson=new JSONObject();
+		PrintWriter out = response.getWriter();
 		try {
-
-			JSONObject jsonObject = new JSONObject(payload);
-			jsonObject.put("PrimaryAccountNumber", request.getParameter("accNo"));		   
-			jsonRequest= VdpUtility.convertToPrettyJsonstring(jsonObject.toString());    
-	       
+			outputJson.put("apiKey",apiKey);
+			outputJson.put("sharedSecret",sharedSecret);
+			response.setContentType("application/json");
+			out.print(outputJson);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-		response.getWriter().write(jsonRequest);
+		
+		
+		
+		
 		
 		
 	}
@@ -66,8 +74,7 @@ public class AccountVerificationRequestServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-	
+		// TODO Auto-generated method stub
 	}
 
 }
