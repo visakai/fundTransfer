@@ -78,7 +78,7 @@ public class AccountVerificationResponseServlet extends HttpServlet {
 		
 			NetClientPost client = new NetClientPost();
 		    newpayload = jsonObject.toString();
-		    endpoint = (String)new ConfigValues().getPropValues().get("urlACNV") + "?apikey=" + (String)new ConfigValues().getPropValues().get("apiKey");
+		    endpoint = (String)new ConfigValues().getPropValues().get("urlACNV") + "?apikey=" + apiKey;
 		    pathACNV = (String)new ConfigValues().getPropValues().get("pathACNV");
 		    token = new Algorithm().generateXpaytoken(newpayload, pathACNV, apiKey, sharedSecret);
 		    res = client.getResponse(newpayload,

@@ -98,7 +98,7 @@ public class OCTresponseServlet extends HttpServlet {
 	 
 	 NetClientPost client = new NetClientPost();
 	 newpayload = jsonObject.toString();	
-	 endpoint = (String)new ConfigValues().getPropValues().get("urlOCT") + "?apikey=" + (String)new ConfigValues().getPropValues().get("apiKey");
+	 endpoint = (String)new ConfigValues().getPropValues().get("urlOCT") + "?apikey=" + apiKey;
 	 token = new Algorithm().generateXpaytoken(newpayload, (String)new ConfigValues().getPropValues().get("pathOCT"), apiKey, sharedSecret);	
 	 
 	 res = client.getResponse(newpayload,endpoint, token);

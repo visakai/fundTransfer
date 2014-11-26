@@ -92,7 +92,7 @@ public class AccountlookupresponseServlet extends HttpServlet {
 			NetClientPost client = new NetClientPost();
 		    newpayload = jsonObject.toString(); //pay load After user input			
 			
-			endpoint = (String)new ConfigValues().getPropValues().get("urlACNL") + "?apikey=" + (String)new ConfigValues().getPropValues().get("apiKey");
+			endpoint = (String)new ConfigValues().getPropValues().get("urlACNL") + "?apikey=" + apiKey;
 			token = new Algorithm().generateXpaytoken(newpayload, (String)new ConfigValues().getPropValues().get("pathACNL"), apiKey, sharedSecret );
 			
 			res = client.getResponse(newpayload, endpoint,token);
