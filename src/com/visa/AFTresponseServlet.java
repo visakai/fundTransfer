@@ -104,7 +104,7 @@ public class AFTresponseServlet extends HttpServlet {
 			}
 			 NetClientPost client = new NetClientPost();
 			 newpayload = jsonObject.toString();
-			 endpoint = (String)new ConfigValues().getPropValues().get("urlAFT") + "?apikey=" + (String)new ConfigValues().getPropValues().get("apiKey");
+			 endpoint = (String)new ConfigValues().getPropValues().get("urlAFT") + "?apikey=" + apiKey;
 			 token = new Algorithm().generateXpaytoken(newpayload, (String)new ConfigValues().getPropValues().get("pathAFT"), apiKey, sharedSecret);
 			 res = client.getResponse(newpayload, endpoint,token);
 					 

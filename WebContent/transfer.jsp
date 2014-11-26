@@ -21,7 +21,7 @@
 	type="text/javascript"></script>
 
 </head>
-<body link="#FFFF99" vlink="#FFFF99" alink="#FFFF99" onLoad="dropDown()">
+<body link="#FFFF99" vlink="#FFFF99" alink="#FFFF99" onLoad="populateAccNumbers()">
 
 	<div id="header" style="align: center; background-color:#011f4b;">
 </br>
@@ -103,8 +103,7 @@
 					
 					<table border="0" align="center" width="45%" style="border: 1px solid grey; ">		
 							<tr><td align="left" style="font-size: 10pt;font-family:Source Code Pro" width="35%" >&nbsp;&nbsp;&nbsp; Sender's AccountNumber:<font color="red">*</font></td>
-							<td align="left"><input type="text" name="accNo" id="accNo"
-							value="<%=session.getAttribute( "senderPAN" )==null?"4957030001013830":session.getAttribute( "senderPAN" )%>" disabled></input>
+							<td align="left"><input type="text" name="accNo" id="accNo" disabled></input>
 							<div class="myErrors"></div></td>
 							<td><input type="button" value="Update" id="update" size="3"
 									style="background-color: #e8702a; color: white; height: 30px; width: 60px; cursor: pointer;"
@@ -112,8 +111,7 @@
 							</tr>
 							<tr><td align="left" style="font-size: 10pt;font-family:Source Code Pro" width="35%" >&nbsp;&nbsp;&nbsp; Receiver's AccountNumber:<font color="red">*</font></td>
 							<td align="left">
-							<input type="text" name="recipientCardNumber" id="recipientCardNumber"
-							value="<%=session.getAttribute( "recipientPAN" )==null?"4957030001013848":session.getAttribute( "recipientPAN" )%>" disabled></input>
+							<input type="text" name="recipientCardNumber" id="recipientCardNumber" disabled></input>
 							<div class="myErrors"></div></td>
 							<td><input type="button" value="Update" id="addRec" size="3"
 									style="background-color: #e8702a; color: white; height: 30px; width: 60px; cursor: pointer;"

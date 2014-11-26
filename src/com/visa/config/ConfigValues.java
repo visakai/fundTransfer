@@ -59,7 +59,10 @@ public class ConfigValues {
 		result.put("pathACNL", prop.getProperty("pathACNL"));
 		result.put("pathAFT", prop.getProperty("pathAFT"));
 		result.put("pathOCT", prop.getProperty("pathOCT"));
-		
+		result.put("username", prop.getProperty("username"));
+		result.put("password", prop.getProperty("password"));
+		result.put("senderPAN", prop.getProperty("senderPAN"));
+		result.put("recipientPAN", prop.getProperty("recipientPAN"));
 		
 		return result;
 	}

@@ -1,36 +1,35 @@
-	function dropDown(){ 
-	$.get('CSVActionServlet',function(responseJson) { 
-	    	        $.each(responseJson, function(key, value) {            	
-	            	   $("#cardNumber12345").find('option').remove();
-	                  for(i=0; i < value.length; i++){
-	                       $("#cardNumber12345").append('<option value="'+value[i]+'">'+value[i]+'</option>');                    
-	                   }
-	                });
-	        });};
+function populateAccNumbers(){ 
+	$.get('DefaultTransferServlet',function(responseJson) { 		
+		document.getElementById("accNo").value=responseJson.senderPAN;
+		document.getElementById("recipientCardNumber").value=responseJson.recipientPAN;				
+	});};
         
 	$(document).ready(function() {	
 		 $('#username').focus();	
-		 
+		
 			//login page
 			var loginValidator =  $("#loginForm").validate({
 				rules: {		     
 					// mandatory entry
 					username: {required:true},	
-					pwd: {required:true},	
+					password1: {required:true},	
 				},	
 				
 				submitHandler: function(){
-					var userId = $('#username').val();
-					var password = $('#pwd').val();
-					if(userId=="visaguest" && password=="possibilities"){
-						 window.location = "transfer.jsp";
-					}else{
-						$('#invalid').show();
-						$(':input','#loginForm')
-						 .not(':button, :submit, :reset, :hidden')
-						 .val('');		
-						$('#username').focus();				
-					}			
+					var username = $('#username').val();
+					var password1 = $('#password1').val();
+	        		
+	        		$.get('LoginServlet',{username:username,password1:password1},function(responseText) {
+	        			if(responseText.msg=="LoginSuccess"){
+	        			window.location = "transfer.jsp";
+	        			}else{
+	        				$('#invalid').show();
+	        				$(':input','#loginForm')
+							 .not(':button, :submit, :reset, :hidden')
+							 .val('');		
+							$('#username').focus();
+	        				}	        				        			
+	    			});						
 				}
 				});
 			
@@ -44,7 +43,7 @@
 		$('#goback1').click(function() {
 	        $('#divshowResponse').slideToggle("slow");
 	        $('#div1').show();       
-	        $('#cbxShowHideAFT').attr('checked', false); 
+	        $('#cbxShowHide').attr('checked', false); 
 	    });
 		
 		$.validator.addMethod(
@@ -110,6 +109,7 @@
 	$("#clearSender").click(function() { 		
 		senderValidator.resetForm();
 		$('#showMsg').hide();
+		document.getElementById("cbxShowHide").disabled=true;
 	});
    
 	var adminConsole = $( "#adminConsole" ).dialog({ 
@@ -198,6 +198,7 @@
 	$("#clearRecp").click(function() { 
 		recpValidator.resetForm();
 		$('#showMsg').hide();
+		document.getElementById("cbxShowHide").disabled=true;
 	});		
 
 	//Transfer page
@@ -232,9 +233,10 @@
 						$('#responseAft').html(responseText.response);  
 						$('#apiKeyAFT').html(responseText.apiKey);
 						$('#sharedSecretAFT').html(responseText.sharedSecret);
-						var responseRegExp = new RegExp("TransactionIdentifier");						
-						var $messageDiv = $('#showMsg');						
-						if (responseRegExp.test(responseText.response)) {
+						var parsedData =JSON.parse(responseText.response);						
+						var actionCode = parsedData.ActionCode;						
+						var $messageDiv = $('#showMsg');					
+						if (actionCode=="00" || actionCode=="0") {
 							doOCT();
 						}else{
 							$messageDiv.show().html('<font color="red" size="2" family="Source Code Pro"><center>Money Transfer Failed.<center></font>');
@@ -244,18 +246,12 @@
 				}
 			});
 
-	$('#cbxShowHideAFT').click(
-			function() {
-				this.checked ? $('#divshowResponse')
-						.show(1000) : $(
-						'#divshowResponse').hide(
-								1000); //time for show
-						 $('#div1').slideToggle("slow");	
-			});
+	
 	
 	$("#clearTransfer").click(function() { 
 		transferValidator.resetForm();
 		$('#showMsg').hide();
+		document.getElementById("cbxShowHide").disabled=true;
 	});		
 
 	jQuery.validator.addMethod(
@@ -283,9 +279,10 @@
 		}, function(responseText) {
 			$('#responseOCT').html(responseText.response);  
 			$('#requestOCTHeader').html(responseText.token);
-			var responseRegExp = new RegExp("TransactionIdentifier");
-			var $messageDiv = $('#showMsg');
-			if (responseRegExp.test(responseText.response)) {					
+			var parsedData =JSON.parse(responseText.response);						
+			var actionCode = parsedData.ActionCode;						
+			var $messageDiv = $('#showMsg');					
+			if (actionCode=="00") {							
 				 $messageDiv.show().html('<font color="green" size="2" family="Source Code Pro"><center>Money Transfer Successful!</center></font>');							
 				}else{
 				 $messageDiv.show().html('<font color="red" size="2" family="Source Code Pro"><center>Money Transfer Failed.<center></font>');

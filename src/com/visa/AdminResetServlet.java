@@ -39,6 +39,13 @@ public class AdminResetServlet extends HttpServlet {
 		String apiKey= (String)session.getAttribute("apiKey");
 		String sharedSecret = (String)session.getAttribute("sharedSecret");
 		
+		if(apiKey==null ||sharedSecret==null ){
+			apiKey = (String)new ConfigValues().getPropValues().get("apiKey");
+			sharedSecret = (String)new ConfigValues().getPropValues().get("sharedSecret");
+
+			session.setAttribute("apiKey", apiKey);
+			session.setAttribute("sharedSecret", sharedSecret);
+		}
 		
 		if(apiKey!=null ||sharedSecret!=null ){
 			

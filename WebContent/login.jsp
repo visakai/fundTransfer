@@ -64,7 +64,7 @@
 	</tr>
 	<tr>
 	<td><font size="2" family= "Source Code Pro" >Password: <font color="red">*</font></font></td>
-	<td align="left"><font size="2" family= "Source Code Pro" ><input type="password" id="pwd" name="pwd" value=""/></font><div class="myErrors"></div></td>
+	<td align="left"><font size="2" family= "Source Code Pro" ><input type="password" id="password1" name="password1" value=""/></font><div class="myErrors"></div></td>
 	</tr>
 	<tr></tr><tr></tr>
 	<tr>
