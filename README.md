@@ -7,7 +7,7 @@ This funds transfer web application serves as a demo app in order to help develo
 Please follow these steps to download and run it on your local computer:
 
 ####(1). Download the project.   
-Go to [https://github.com/visakai/fundTransfer] and click <button>**_Download ZIP_**</button> button on the lower right corner of the page.
+Go to https://github.com/visakai/fundTransfer and click <button>**_Download ZIP_**</button> button on the lower right corner of the page.
 
 ####(2). Unzip the downloaded file.
 
@@ -19,7 +19,7 @@ Right click on the project, and then choose **_Run As_** -> **_Run on Server_**.
 If you already have your server configured in Eclipse, just select 
 **_Choose an existing server_** and choose your server and click **_Finish_**.  
 If you don't have a server set up yet, select **_Manually define a new server_**. Choose your server (_for example_, Tomcat v8.0 server) and click **_Next_**. Click **_Browser_** and navigate to your server installation directory (_for example_, <u>_C:\Program Files(x86)\apache-tomcat-8\apache-tomcat-8.0.14</u>). Then click on <i>**Finish**</i>.  
-Once the server has started up, you should be able to see the login page of the project in a browser at http://localhost:8080/visaFT/.  Use *visaguest* as username and *possibilities* as password to log in.
+Once the server has started up, you should be able to see the login page of the project in a browser at <a>http://localhost:8080/visaFT/</a>.  Use *visaguest* as username and *possibilities* as password to log in.
 If you encounter a `java.net.UnknownHostException`, please disable your internet proxy and retry.
 
 ####(5). Obtain developer credentials and test data.
