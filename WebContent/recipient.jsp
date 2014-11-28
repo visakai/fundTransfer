@@ -107,13 +107,13 @@
 			<td>&nbsp;</td>
 			</tr>
 			<tr>
-			<td style="font-size: 10pt;margin-left:500px" width="20%" family = "Source Code Pro" align="left" >&nbsp;&nbsp;&nbsp; Recipient Name: </td>
+			<td style="font-size: 10pt;margin-left:500px;font-family:Source Code Pro" width="20%" align="left" >&nbsp;&nbsp;&nbsp; Recipient Name: </td>
 				<td align="left" width="20%"><input type="text" size="19" name="recipientName" id="recipientName" value=""/></td>				
 			</tr>
 			
 			
 			<tr>
-			<td style="font-size: 10pt;" width="20%" family = "Source Code Pro" align="left">&nbsp;&nbsp;&nbsp; Recipient Card Number: <font color="red">*</font></td>
+			<td style="font-size: 10pt;font-family:Source Code Pro" width="20%" align="left">&nbsp;&nbsp;&nbsp; Recipient Card Number: <font color="red">*</font></td>
 				<td align="left"><input type="text" size="19" name="recipientCardNumber" id="recipientCardNumber" value="<%=session.getAttribute( "recipientPAN" )==null?"":session.getAttribute( "recipientPAN" )%>"/><div class="myErrors"></div></td>				
 			</tr>
 			<tr>

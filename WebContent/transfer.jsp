@@ -102,14 +102,14 @@
 					<div style="text-align: left">
 					
 					<table border="0" align="center" width="45%" style="border: 1px solid grey; ">		
-							<tr><td align="left" style="font-size: 10pt;font-family:Source Code Pro" width="35%" >&nbsp;&nbsp;&nbsp; Sender's AccountNumber:<font color="red">*</font></td>
+							<tr><td align="left" style="font-size: 10pt;font-family:Source Code Pro" width="35%" >&nbsp;&nbsp;&nbsp; Sender's A/c Number:<font color="red">*</font></td>
 							<td align="left"><input type="text" name="accNo" id="accNo" disabled></input>
 							<div class="myErrors"></div></td>
 							<td><input type="button" value="Update" id="update" size="3"
 									style="background-color: #e8702a; color: white; height: 30px; width: 60px; cursor: pointer;"
 									title="Click here to update Sender account number"; onClick="window.location='sender.jsp'"> </input></td>
 							</tr>
-							<tr><td align="left" style="font-size: 10pt;font-family:Source Code Pro" width="35%" >&nbsp;&nbsp;&nbsp; Receiver's AccountNumber:<font color="red">*</font></td>
+							<tr><td align="left" style="font-size: 10pt;font-family:Source Code Pro" width="35%" >&nbsp;&nbsp;&nbsp; Receiver's A/c Number:<font color="red">*</font></td>
 							<td align="left">
 							<input type="text" name="recipientCardNumber" id="recipientCardNumber" disabled></input>
 							<div class="myErrors"></div></td>

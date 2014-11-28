@@ -119,10 +119,10 @@
 				<table border="0" align="center" width="38%"
 					style="border: 1px solid grey;">
 					<tr>
-						<td>&nbsp;</td>
+						<td colspan="2">&nbsp;</td>
 					</tr>
 					<tr>
-						<td align="center" padding-bottom=" 225px"><font size="2" family= "Source Code Pro" >Debit/Credit Card Number: <font color="red">*</font></font></td>
+						<td width="45%" align="left" padding-bottom="225px" style="font-size: 10pt;font-family:Source Code Pro" >&nbsp;&nbsp;&nbsp; Sender's Account Number: <font color="red">*</font></td>
 
 						<td align="left"><input type="text" name="accNo" id="accNo"
 							value="<%=session.getAttribute( "senderPAN" )==null?"":session.getAttribute( "senderPAN" )%>"></input>
@@ -147,7 +147,7 @@
 							style="height: 40px; width: 70px; background-color: #e8702a; color: white; font-family: Arial, Times, Sans-serif"
 							onclick="window.location='recipient.jsp'"> </input></td>
 					</tr>
-				<tr><td>&nbsp;</td></tr>
+				<tr><td colspan="2">&nbsp;</td></tr>
 				</table>
 			</h5>
 		</h5>
