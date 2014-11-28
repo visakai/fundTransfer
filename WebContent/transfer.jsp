@@ -180,7 +180,7 @@
 	<form name="showResponseForm" id="showResponseForm" >
 	<div id="divshowResponse"  style="display: none;">
 			<table border="0" width="74%" align="center"> 
-		<td><font size="2">API Name: Pull Money(AFT), Push Money(OCT)</font></td>
+		<td><font size="2">API Name: Pull Money(AFT)</font></td>
 				
 				<td></td>
 					<td style="font-size:13px; font-color:red" align="right"><input type="button" id="goback1" name="goback1" value="Go Back" style="height: 40px; width: 70px; background-color: #e8702a; color: white; font-family: Arial, Times, Sans-serif"></td>
