@@ -28,13 +28,11 @@
 	<div id="header" style="align: center; background-color:#011f4b;">
 </br>
 		<h2 style="font-family: Source Code Pro">Funds Transfer App - Triangle Corp.</h2>
-		 <div style="float:right; margin-right:50px" >
-        <input type="button" id="admin" value="Update&#13;&#10;Credentials&#13;&#10;"
-				style="  height: 40px; width: 80px; background-color: #e0cda7; color: #011f4b; font-family: Arial, Times, Sans-serif;"></input>
-    	</div>
+		
 				
 				<font size="2" color="white" style="font-family: Source Code Pro"><center>The
-				easiest way to transfer money to a Visa card</center></font>
+				easiest way to transfer money to a Visa card</center><div style="font-color: #011f4b; font-size: 10pt;font-family:Source Code Pro;float:right; margin-right:250px" >
+         			<a id="admin" href='#'><font color="#e0cda7">Update Credentials</font></a></div></font>
 				</br>
 				<h4 style="margin-right:250px;margin-left:250px;background-color:#e8702a" color="#e8702a;"><font color="#e8702a">Test</font></h4>
 	</div>
