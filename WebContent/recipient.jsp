@@ -95,7 +95,7 @@
 			</tr>
 		</table>
 					<br>
-			<font size="2" family = "Source Code Pro"> Step 2 of 3- Enter Recipient's Visa Card Number:<font color="red">*</font></font>
+			<font size="2" family = "Source Code Pro"> Step 2 of 3 - Enter Recipient's Visa Card Number</font>
 	
 <br>
 		</br>

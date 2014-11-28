@@ -113,7 +113,7 @@
 
 		
 		
-			<font size="2" family = "Source Code Pro"> Step 1 of 3- Enter Sender Details:</font>
+			<font size="2" family = "Source Code Pro"> Step 1 of 3 - Enter Sender Details</font>
 			            
 				</br></br>
 

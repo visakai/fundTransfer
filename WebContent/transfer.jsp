@@ -93,7 +93,7 @@
 					
 		<div style="text-align: center">
 			
-				</br> <font size="2" family = "Source Code Pro">Step 3 of 3- Transfer Money:</br>
+				</br> <font size="2" family = "Source Code Pro">Step 3 of 3 - Transfer Money</br>
 				</font>
 				
 		</br>
