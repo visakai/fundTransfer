@@ -111,7 +111,7 @@
 			
 			
 			<tr>
-			<td style="font-size: 10pt;font-family:Source Code Pro" width="20%" align="left">&nbsp;&nbsp;&nbsp; Recipient Card Number: <font color="red">*</font></td>
+			<td style="font-size: 10pt;font-family:Source Code Pro" width="25%" align="left">&nbsp;&nbsp;&nbsp; Recipient Card Number: <font color="red">*</font></td>
 				<td align="left"><input type="text" size="19" name="recipientCardNumber" id="recipientCardNumber" value="<%=session.getAttribute( "recipientPAN" )==null?"":session.getAttribute( "recipientPAN" )%>"/><div class="myErrors"></div></td>				
 			</tr>
 			<tr>
