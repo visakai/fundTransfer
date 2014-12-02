@@ -2,12 +2,27 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>VisaFT</display-name>
   <welcome-file-list>
-    <welcome-file>login.jsp</welcome-file>
+    <welcome-file>transfer.jsp</welcome-file>
   </welcome-file-list>
   <description>
         This is a simple web application with a source code organization
         based on the recommendations of the Application Developer's Guide.
-    </description>   
+    </description>
+  <filter>
+    <filter-name>BasicAuthFilter</filter-name>
+    <filter-class>com.visa.BasicAuthFilter</filter-class>
+    <init-param>
+      <param-name>my-param</param-name>
+      <param-value>my-param-value</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>BasicAuthFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
+
   <servlet>
     <servlet-name>OCTresponseServlet</servlet-name>
     <servlet-class>com.visa.OCTresponseServlet</servlet-class>
@@ -16,6 +31,8 @@
     <servlet-name>OCTresponseServlet</servlet-name>
     <url-pattern>/OCTresponseServlet/*</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>OCTrequestServlet</servlet-name>
     <servlet-class>com.visa.OCTrequestServlet</servlet-class>
@@ -24,6 +41,8 @@
     <servlet-name>OCTrequestServlet</servlet-name>
     <url-pattern>/OCTrequestServlet/*</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>AccountVerificationRequestServlet</servlet-name>
     <servlet-class>com.visa.AccountVerificationRequestServlet</servlet-class>
@@ -32,14 +51,18 @@
     <servlet-name>AccountVerificationRequestServlet</servlet-name>
     <url-pattern>/AccountVerificationRequestServlet/*</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>AccountVerificationResponseServlet</servlet-name>
-    <servlet-class>com.visa. AccountVerificationResponseServlet</servlet-class>
+    <servlet-class>com.visa.AccountVerificationResponseServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AccountVerificationResponseServlet</servlet-name>
     <url-pattern>/ AccountVerificationResponseServlet/*</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>AccountlookuprequestServlet</servlet-name>
     <servlet-class>com.visa.AccountlookuprequestServlet</servlet-class>
