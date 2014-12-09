@@ -1,0 +1,100 @@
+body {
+	background-color: white;
+	font-family: "Arial";
+}
+
+.ui-disabled {
+	opacity: 0.3 !important;
+}
+
+.right_column {
+	width: 385px;
+	height: 250px;
+	float: right;
+	background-color: #FFFFCC;
+	overflow: scroll;
+}
+
+.left_column {
+	width: 385px;
+	height: 250px;
+	float: left;
+	background-color: #FFFF99;
+	overflow: scroll;
+}
+
+h2 {
+	color: White;
+	margin-left: 40px;
+	text-align: center;
+	font-family: "Arial", Times, Sans-serif;
+}
+
+form {
+	text-align: center;
+}
+
+#header {
+	background-color: #3385FF;
+}
+
+html, body, blockquote, code, h1, h2, h3, h4, h5, h6, p, pre {
+	margin: 0;
+	padding: 0
+}
+
+button, fieldset, form, input, legend, textarea, select {
+	margin: 0;
+	padding: 0
+}
+
+fieldset {
+	border: 0
+}
+
+a, a * {
+	cursor: pointer
+}
+
+div {
+	margin: 0;
+	padding: 0;
+	background-color: transparent;
+	text-align: left
+}
+
+hr, img {
+	border: 0
+}
+
+applet, iframe, object {
+	border: 0;
+	margin: 0;
+	padding: 0
+}
+
+button, input[type=button], input[type=image], input[type=reset], input[type=submit],
+	label {
+	cursor: pointer;
+}
+
+ul, li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+strong {
+	font-weight: bold;
+}
+
+em {
+	font-style: italic;
+}
+
+.myErrors {
+	color: red;
+	font-family: "Arial";
+	font-weight: bold;
+	font-size: 10pt;
+}
