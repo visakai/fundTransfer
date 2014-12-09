@@ -11,21 +11,18 @@ Java 1.6 and later.
 
 ##Download and Installation
 
-Please follow these steps to download and run it on your local computer:
+Please follow these steps to download and run it on your local computer. This instruction assumes that you use Eclipse as your IDE and already have Maven installed.
 
 #####(1). Download the project.   
 Go to https://github.com/visakai/fundTransfer and click <button>**_Download ZIP_**</button> button on the lower right corner of the page.
 #####(2). Unzip the downloaded file.  
 Extract all files from the .zip file to a destination folder on your computer.
 #####(3). Import the project to your IDE.  
-In your IDE, for example Eclipse, Click **_File_** -> **_Import_** -> **_General_** -> **_Existing Projects into Workspace_**. Browse to the unzipped folder and choose **_visaFT_** as the project to import.
-
+In Eclipse, Click **_File_** -> **_Import_** -> **_Maven_** -> **_Existing Maven Projects_**. Browse to the unzipped folder and choose the project to import.
 #####(4). Run the project.
-Right click on the project, and then choose **_Run As_** -> **_Run on Server_**.   
-If you already have your server configured in Eclipse, just select 
-**_Choose an existing server_** and choose your server and click **_Finish_**.  
-If you don't have a server set up yet, select **_Manually define a new server_**. Choose your server (_for example_, Tomcat v8.0 server) and click **_Next_**. Click **_Browser_** and navigate to your server installation directory (_for example_, <u>_C:\Program Files(x86)\apache-tomcat-8\apache-tomcat-8.0.14_</u>). Then click on <i>**Finish**</i>.  
-Once the server has started up, you should be able to see the login page of the project in a browser at <a>http://localhost:8080/visaFT/</a> (assuming that 8080 is your local server's port number). Enter the username and password you obtained from Visa Developer Platform team to log in.
+Right click on the project, and then choose **_Run As_** -> **_Run Configurations..._**, then double-click **_Maven Build_**. For **_Base directory_**, click on **_Browse Workspace..._** button, navigate and select the workspace project. For **_Goals_**, put `jetty:run`. Then click on **_Run_** button. This should start jetty server.    
+
+Once the server has started up, you should be able to see the login page of the project in a browser at <a>http://localhost:8080/fund-transfer/</a> (assuming that 8080 is your local server's port number). Enter the username and password you obtained from Visa Developer Platform team to log in.
 If you encounter a `java.net.UnknownHostException`, please disable your internet proxy and retry.
 
 
