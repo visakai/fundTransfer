@@ -46,3 +46,11 @@ keytool -import -alias entrust_ssl_ca -keystore <JAVA_HOME>/jre/lib/security/cac
 ```
 (&lt;JAVA_HOME&gt; is the path to your Java installation. keytool is a utility included in the Java SDK.)  
 > (c). Enter the keystore password when prompted for it. The default password is usually **changeit**.
+
+#####  Change Application Credentials
+
+In order to change the DemoApp BasicAuth Login Credentials, go to config.properties under resources folder of the app and change username and password.
+
+In order to change the proxy credentials, go to config.properties under resources folder of the app and change hostname,hostport,proxyusername and proxypassword
+And uncomment the code related to proxy setup in RestWebServiceClient.java file under com.fundtransfer package.
+
