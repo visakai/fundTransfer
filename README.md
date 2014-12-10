@@ -23,7 +23,7 @@ In Eclipse, Click **_File_** -> **_Import_** -> **_Maven_** -> **_Existing Maven
 Right click on the project, and then choose **_Run As_** -> **_Run Configurations..._**, then double-click **_Maven Build_**. For **_Base directory_**, click on **_Browse Workspace..._** button, navigate and select the workspace project. For **_Goals_**, put `jetty:run`. Then click on **_Run_** button. This should start jetty server.    
 
 Once the server has started up, you should be able to see the login page of the project in a browser at <a>http://localhost:8080/fund-transfer/</a> (assuming that 8080 is your local server's port number). Enter the username and password you obtained from Visa Developer Platform team to log in.
-If you encounter a `java.net.UnknownHostException`, please disable your internet proxy and retry or else to bypass the proxy, change the proxy credentials in config.properties under resources folder of the app and change hostname,hostport,proxyusername and proxypassword and uncomment the code related to proxy setup in RestWebServiceClient.java file under com.fundtransfer package.
+If you encounter a `java.net.UnknownHostException`, please disable your internet proxy and retry or else to bypass the proxy, change the proxy credentials in config.properties under *resources* folder of the app and change hostname, hostport, proxyusername and proxypassword and uncomment the code related to proxy setup in RestWebServiceClient.java file under com.fundtransfer package.
 
 
 
