@@ -46,10 +46,17 @@ public class RestWebServiceClient {
 		 */
 
 		conn = (HttpsURLConnection) url.openConnection();
-		conn.setDoOutput(true);
-		conn.setRequestMethod("POST");
-		conn.setRequestProperty("Content-Type", "application/json");
-		conn.setRequestProperty("Accept", "application/json");
+        conn.setDoOutput(true);
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("Content-Type", "application/json");
+        if(url.toString().contains("cce")){
+        conn.setRequestProperty("Accept", "application/vnd.visa.CardCheck.v1+json");}
+        else if (url.toString().contains("cf")){
+               conn.setRequestProperty("Accept", "application/vnd.visa.CardFeatures.v1+json");
+        }
+        else{
+               conn.setRequestProperty("Accept", "application/vnd.visa.FundsTransfer.v1+json");
+        }
 		conn.setRequestProperty("x-pay-token", xpaytoken);
 		os = conn.getOutputStream();
 		os.write(payload.getBytes());
