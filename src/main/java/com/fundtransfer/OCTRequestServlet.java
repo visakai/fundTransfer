@@ -32,6 +32,8 @@ public class OCTRequestServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 	        HttpServletResponse response) throws ServletException,
 	        IOException {
+		System.out.println("OCTRequestServlet Start>>>");
+
 		String payload = (String) new ConfigValues().getPropValues()
 		        .get("payloadOCT");
 		String senderPAN = null;

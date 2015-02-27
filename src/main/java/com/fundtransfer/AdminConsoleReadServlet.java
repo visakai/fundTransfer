@@ -39,13 +39,15 @@ public class AdminConsoleReadServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 	        HttpServletResponse response) throws ServletException,
 	        IOException {
+		System.out.println("AdminConsoleReadServlet Start>>>");
 		HttpSession session = request.getSession();
 		String apiKey = (String) session.getAttribute("apiKey");
 		String sharedSecret = (String) session
 		        .getAttribute("sharedSecret");
 		JSONObject outputJson = new JSONObject();
 		PrintWriter out = response.getWriter();
-
+		System.out.println("session get apiKey:"+apiKey);
+		System.out.println("session get sharedSecret:"+sharedSecret);
 		if (apiKey == null || sharedSecret == null) {
 			apiKey = (String) new ConfigValues().getPropValues().get(
 			        "apiKey");

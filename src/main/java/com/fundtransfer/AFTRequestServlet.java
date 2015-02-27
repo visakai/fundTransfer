@@ -41,6 +41,8 @@ public class AFTRequestServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 	        HttpServletResponse response) throws ServletException,
 	        IOException {
+		System.out.println("AFTRequestServlet Start>>>");
+
 		String payload = (String) new ConfigValues().getPropValues()
 		        .get("payloadAFT");
 		JSONObject jsonObject;

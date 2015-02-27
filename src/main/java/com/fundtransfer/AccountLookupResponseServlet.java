@@ -40,6 +40,8 @@ public class AccountLookupResponseServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 	        HttpServletResponse response) throws ServletException,
 	        IOException {
+		System.out.println("AccountLookupResponseServlet Start>>>");
+
 		String token = "";
 		String payload = "";
 		String newpayload = "";

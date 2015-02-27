@@ -1,0 +1,502 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 23, 2015, 12:22:06 PM
+    Author     : rsee@visa.com
+*/
+
+// Open Sans Fonts
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Light-webfont.eot');
+    src: url('../fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans-Light-webfont.woff') format('woff'),
+         url('../fonts/OpenSans-Light-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans-Light-webfont.svg#open_sanslight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Regular-webfont.eot');
+    src: url('../fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans-Regular-webfont.woff') format('woff'),
+         url('../fonts/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Bold-webfont.eot');
+    src: url('../fonts/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans-Bold-webfont.woff') format('woff'),
+         url('../fonts/OpenSans-Bold-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans-Bold-webfont.svg#open_sansbold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+
+}
+
+body {
+    font-family: "Open Sans","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
+    padding-bottom: 100px;
+}
+
+.navbar-header {
+    text-align: center;
+}
+
+.navbar-brand {
+    float:none;
+    display: block;
+    letter-spacing: 2px;
+    font-size: 24px;
+}
+
+nav.navbar {
+    background: #FFF;
+    padding: 0px 0 0 0;
+    border: none;
+    margin-bottom: 0px;
+}
+
+.navbar-toggle {
+    float: left;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+    background-color: #797979;
+    height: 3px;
+}
+
+.navbar-inverse .navbar-toggle {
+    background-color: #FFF;
+    border-color: #FFF;
+}
+
+.navbar-inverse .navbar-collapse {
+    border: none;
+}
+
+.navbar-brand .blue {
+    color: #04d1c0;
+}
+
+.navbar-brand .grey {
+    color: #8d8d8d;
+}
+
+.navbar-inverse .navbar-link {
+    color: #0c91b2;
+}
+
+.navbar-inverse .navbar-link:hover {
+    color: #0c91b2;
+}
+
+
+.jumbotron {
+    padding-top: 0px;
+    background-color: #b6f5fe;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#b6f5fe), to(#6dddf9)); /* Chrome, Safari 4+ */
+    background-image: -webkit-linear-gradient(top, #b6f5fe, #6dddf9); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+    background-image: -moz-linear-gradient(top, #b6f5fe, #6dddf9); /* Firefox 3.6-15 */
+    background-image: -o-linear-gradient(top, #b6f5fe, #6dddf9); /* Opera 11.10-12.00 */
+    background-image: linear-gradient(to bottom, #b6f5fe, #6dddf9); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b6f5fe", endColorstr="#6dddf9"); /* IE 6-9 */
+    
+    margin-bottom: 0px;
+}
+
+.fund-transfer-steps {
+    padding-top: 41px;
+    padding-bottom: 14px;
+}
+
+.fund-transfer-steps .heading {
+    margin-bottom: 40px;
+    font-size: 40px;
+}
+
+.fund-transfer-steps .heading span {
+    font-weight: 100;
+    color: #088eb0;
+}
+
+.fund-transfer-steps .fa-stack.fa-lg{
+    font-size: 5em;
+}
+
+.fund-transfer-steps h1 {
+    font-size: 40px;
+    font-weight: 100;
+}
+
+.fund-transfer-steps h2 {
+    color: #088eb0;
+}
+.fund-transfer-steps .step {
+    text-align: center;
+    cursor: pointer;
+}
+
+.fund-transfer-steps h2, .fund-transfer-steps h3 {
+    font-weight: 100;
+}
+
+
+.fund-transfer-form h3 {
+    font-size: 24px;
+    color: #858484;
+    font-weight: 200;
+    margin-bottom: 48px;
+    display: inline;
+}
+
+.fund-transfer-form .step {
+    display: block;
+}
+
+.fund-transfer-form .form-title {
+    background: #99ebfb;
+    border: 1px solid #FFF;
+    cursor: pointer;
+}
+
+.fund-transfer-form .form-title h3 {
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.fund-transfer-form .form-content {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.btn-default.blue {
+    border-color: #0c91b2;
+    border: 2px solid #0c91b2;
+    color: #0c91b2;
+    padding: 5px 36px;
+    margin-top: 10px;
+}
+
+.btn-default.blue:hover {
+    color: #FFF;
+    background: #0c91b2;
+}
+
+.btn-default.grey {
+    border-color: #646464;
+    border: 2px solid #646464;
+    color: #646464;
+    padding: 5px 36px;
+    margin-top: 10px;
+}
+
+.btn-default.grey:hover {
+    color: #FFF;
+    background: #646464; 
+}
+
+.next-step {
+    display: block;
+    margin-top: 10px;
+}
+
+label {
+    color: #6d6d6d;
+    font-weight: 100;
+    font-size: 18px;
+}
+
+.fund-transfer-form .form-title.active::after {
+    position: relative;
+    top: 0px;
+    left: 25px;
+    width: 0;
+    height: 0;
+    vertical-align: middle;
+    content: " ";
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid;
+    border-left: 10px solid transparent;
+    color: #FFF;
+}
+
+.carrot {
+    position: relative;
+    top: -20px;
+    left: 16%;
+    width: 0;
+    height: 0;
+    margin-left: -5px;
+    vertical-align: middle;
+    content: " ";
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid;
+    border-left: 20px solid transparent;
+    color: #FFF;
+    
+    -moz-transition: left 1s; 
+    -webkit-transition: left 1s;  
+    -ms-transition: left 1s;  
+    -o-transition: left 1s;  
+    transition: left 1s;
+}
+
+.carrot.step1 {
+    left: 16%;
+}
+
+.carrot.step2 {
+    left: 50%;
+}
+
+.carrot.step3 {
+    left: 83%;
+}
+
+.navmenu-default, .navbar-default .navbar-offcanvas {
+    background: #444;
+    border-color: #444;
+}
+
+.offcanvas {
+    padding: 20px;
+}
+
+.offcanvas span.title {
+    color: #FFF;
+    font-size: 18px;
+}
+
+.offcanvas label {
+    margin-top: 20px;
+    color: #FFF;
+}
+
+.offcanvas textarea {
+    height: 100px;
+}
+
+.view-code-button-wrapper {
+    border: 0px solid #000;
+    top: 50%;
+    position: fixed;
+    left: 0;
+    z-index: 500;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+
+.view-code-button-wrapper div {
+    display: inline-block;
+    padding: 15px 10px;
+    font-size: 18px;
+}
+
+.view-code-button-wrapper .arrow {
+    background: #10d1c5;
+    color: #FFF;
+}
+
+.view-code-button-wrapper .text {
+    background: #fff;
+    color: #0c91b2;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+a.update-link {
+    float: right;
+    line-height: 28px;
+}
+
+.circle {
+    background: transparent;
+    border-radius: 70px;
+    width: 120px;
+    height: 120px;
+    border: 5px solid #FFF;
+    display: inline-block;
+}
+
+.circle.small {
+    width: 40px;
+    height: 40px;
+    border-width: 2px;
+    margin: 10px 10px 10px 0;
+}
+
+.fund-transfer-steps .step:hover .circle, .circle.active {
+    background: #10d1c5;
+}
+
+.circle i {
+    padding-top: 35px;
+}
+
+.circle.small i {
+    padding-top: 10px;
+    font-size: 1.5em;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-header h4 {
+    font-weight: 200;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.navmenu, .navbar-offcanvas {
+    width: 85%;
+}
+
+#navbar {
+    background: #383838;
+}
+
+#navbar a {
+    color: #FFF;
+}
+
+.progress-arrow {
+    padding-top: 40px;
+    padding-left: 0;
+    padding-right: 0;
+    visibility: hidden;
+}
+
+.progress-arrow.active {
+    visibility: visible;
+}
+
+.step-arrow {
+    text-align: center;
+    font-size: 1.8em;
+    opacity: 0.3;
+    
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+}
+
+.step-arrow.active {
+    opacity: 1.0;
+}
+
+.step-arrow.inactive {
+    opacity: 0.3;
+}
+
+#sender-info-widget {
+    height: 127px;
+    background: url(../images/visa_icon.png) no-repeat center;
+}
+
+#sender-info-widget.active, #sender-info-widget:hover {
+    height: 127px;
+    background: url(../images/visa_icon_active.png) no-repeat center;
+}
+
+#receiver-info-widget {
+    height: 127px;
+    background: url(../images/receivers_acct_icon.png) no-repeat center;
+}
+
+#receiver-info-widget.active, #receiver-info-widget:hover {
+    height: 127px;
+    background: url(../images/receivers_acct_icon_active.png) no-repeat center;
+}
+
+#money-info-widget {
+    height: 127px;
+    background: url(../images/money_icon.png) no-repeat center;
+}
+
+#money-info-widget.active, #money-info-widget:hover {
+    height: 127px;
+    background: url(../images/money_icon_active.png) no-repeat center;
+}
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    #navbar {
+        background: #FFF;
+    }
+    
+    #navbar a {
+        color: #0c91b2;
+    }
+    
+    .fund-transfer-form .step {
+        display: none;
+    }
+    
+    .fund-transfer-form h3 {
+        display: block;
+    }
+    
+    .fund-transfer-form .form-content {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    
+    nav.navbar {
+        padding: 30px 0 0 0;
+        margin-bottom: 28px;
+    }
+    
+    .navmenu, .navbar-offcanvas {
+        width: 400px;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .view-code-button-wrapper {
+        opacity: 1.0;
+    }
+
+    .btn-default.blue {
+        width: auto;
+        margin-top: 0;
+    }
+    
+    .btn-default.grey {
+        width: auto;
+        margin-top: 0;
+    }
+    
+    .form-control-extra-padding {
+        padding-top: 29px;
+    }
+    
+    
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    
+}

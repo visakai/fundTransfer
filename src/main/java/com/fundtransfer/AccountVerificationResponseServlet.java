@@ -38,6 +38,7 @@ public class AccountVerificationResponseServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("AccountVerificationResponseServlet Start>>>");
 		String payload = (String) new ConfigValues().getPropValues().get(
 				"payloadACNV");
 		String newpayload = "";
@@ -51,7 +52,7 @@ public class AccountVerificationResponseServlet extends HttpServlet {
 		// get sharedSecret
 		String sharedSecret = null;
 		apiKey = (String) session.getAttribute("apiKey");
-
+		System.out.println("session apiKey:"+apiKey);
 		if (apiKey == null) {
 			apiKey = (String) new ConfigValues().getPropValues().get("apiKey");
 		}

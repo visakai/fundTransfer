@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../../favicon.ico">
+    <title>Fund Transfer</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/jasny-bootstrap.min.css" rel="stylesheet">
+    <link href="css/fund-transfer.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+<body>
+    
+    <div class="view-code-button-wrapper hidden-xs" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
+        <div class="arrow"><i class="fa fa-angle-right"></i></div><div class="text">View Code</div>
+    </div>
+       
+    <div id="view-code-widget" class="navmenu navmenu-default navmenu-fixed-left offcanvas " style="left: 0px;">
+        <span class="title">API Name: <span id="apiname" style="display:none" class="title"></span></span>
+      
+        <div class="offcanvas-content-wrapper">
+            <label for="api-key-2">API-KEY:</label>
+            <input id="api-key-2" class="form-control" />
+            
+            <label for="shared-secret-2">Shared Secret:</label>
+            <input id="shared-secret-2" class="form-control"/>
+            
+            <label for="end-point-url">End Point URL:</label>
+            <input id="end-point-url" class="form-control"/>
+            
+            <label for="x-pay-token">X-Pay-Token:</label>
+            <input id="x-pay-token" class="form-control" />
+            
+            <label for="request">Request:</label>
+            <textarea id="request" class="form-control"></textarea>
+            
+            <label for="response">Response</label>
+            <textarea id="response" class="form-control"></textarea>
+            
+            <div id="oct-div" style="display: none">
+            <label for="api-key-2">API Name: Push Money(OCT)</label>
+            
+             <label for="end-point-url-1">End Point URL:</label>
+            <input id="end-point-url-1" class="form-control"/>
+            
+            <label for="x-pay-token-1">X-Pay-Token:</label>
+            <input id="x-pay-token-1" class="form-control" />
+            
+             <label for="request-1">Request:</label>
+            <textarea id="request-1" class="form-control"></textarea>
+            
+            <label for="response-1">Response</label>
+            <textarea id="response-1" class="form-control"></textarea>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><span class="blue">NORTH</span><span class="grey">STAR</span></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <p class="navbar-text navbar-right">
+                <a href="#" id="updateCredential" role="button" class="navbar-link" data-toggle="modal" data-target="#update-credential-modal">Update Credentials</a>
+            </p>
+            <p class="navbar-text navbar-right visible-xs" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body"><a href="#" class="navbar-link">View Code</a></p>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron hidden-xs">
+        <div class="container fund-transfer-steps">
+            <div class="row heading">
+                <div class="col-lg-12 text-center">
+                    <h1>Transfer Fund App</h1>
+                    <span>The easiest way to transfer money to a Visa card</span>
+                </div>
+            </div>
+            <!--
+            <div class="row">
+                <div id="sender-info-widget" class="col-sm-4 step">
+                    <div class="circle active">
+                        <i class="fa fa-cc-visa fa-3x fa-inverse"></i>
+                    </div>
+                    <h3>Sender's Account</h3>
+                </div>
+                <div id="receiver-info-widget" class="col-sm-4 step">
+                    <div class="circle">
+                        <i class="fa fa-bank fa-3x fa-inverse"></i>
+                    </div>
+                    <h3>Receiver's Account</h3>
+                </div>
+                <div id="money-info-widget" class="col-sm-4 step">
+                    <div class="circle">
+                        <i class="fa fa-dollar fa-3x fa-inverse"></i>
+                    </div>
+                    <h3>Transfer Money</h3>
+                </div>
+            </div>-->
+            <div class="row">
+                <div id="sender-info-widget" class="col-sm-2 col-sm-offset-1 step"></div>
+                <div class="col-sm-2 progress-arrow active"><img class="img-responsive" src="images/arrow.png"/></div>
+                <div id="receiver-info-widget" class="col-sm-2 step"></div>
+                <div class="col-sm-2 progress-arrow"><img class="img-responsive" src="images/arrow.png"/></div>
+                <div id="money-info-widget" class="col-sm-2 step"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 text-center">
+                    <h3>Sender's Account</h3>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <h3>Receiver's Account</h3>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <h3>Transfer Money</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container hidden-xs">
+        <div class="row">
+            <div class="carrot step1"></div>
+        </div>
+    </div>
+
+    <div class="container fund-transfer-form">
+        <div class="row form-title active visible-xs" data-target="sender-info">
+            <div class="col-xs-12">
+                <div class="circle small active text-center">
+                    <i class="fa fa-cc-visa fa-2x fa-inverse"></i>
+                </div>
+                <h3>Sender's Account</h3>
+            </div>
+        </div>
+        <div id="sender-info" class="step" style="display: block">
+            <div class="row">
+                <div class="col-md-9 col-md-offset-3 hidden-xs">
+                    <h3>Enter Sender's Visa Card Number</h3>
+                </div>
+            </div>
+            <div class="row form-content">
+                <form id="sender-info-form" method="POST">
+                    <div class="col-md-9 col-md-offset-3"><label for="sender-card-number">Sender's Visa Card Number</label></div>
+                    <div class="col-md-3 col-md-offset-3">
+                        <input type="text" class="form-control" id="sender-card-number" maxlength="16" value="4957030420210462" />
+                    </div>
+                    <div class="col-md-5">
+                        <button id="verify-sender-card-number" type="button" class="btn btn-default blue">Verify</button>
+                        <button type="button" class="btn btn-default grey reset-button">Reset</button>
+                    </div>
+                    <div class="col-md-1 text-right">
+                        <a href="#" class="next-step hidden-xs" data-target="receiver-info"><span>NEXT</span> <i class="fa fa-angle-right"></i></a>
+                    </div>
+                    
+                    
+                </form>
+                
+            </div>
+            <br/>  <br/>
+            <div class="row">
+                 <div class="col-md-9 col-md-offset-3" id="showMsg" style="display: none"></div>
+               </div>
+            
+        </div>
+        <div class="row form-title visible-xs" data-target="receiver-info">
+            <div class="col-xs-12">
+                <div class="circle small text-center">
+                    <i class="fa fa-bank fa-2x fa-inverse"></i>
+                </div>
+                <h3>Receiver's Account</h3>
+            </div>
+        </div>
+        <div id="receiver-info" class="step" style="display: none;">
+            <div class="row">
+                <div class="col-md-11 col-md-offset-1 hidden-xs">
+                    <h3>Enter Receiver's Visa Card Number</h3>
+                </div>
+            </div>
+            <div class="row form-content">
+                <form id="receiver-info-form" method="POST">
+                    <div class="col-md-3 col-md-offset-1">
+                        <label for="receiver-name">Receiver's Name</label>
+                        <input type="text" class="form-control" id="receiver-name"/>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="receiver-card-number">Receiver's Visa Card Number</label>
+                        <input type="text" class="form-control" id="receiver-card-number" maxlength="16" value="4895070000008881"/>
+                    </div>
+                    <div class="col-md-4 form-control-extra-padding">
+                        <button id="verify-receiver-card-number" type="button" class="btn btn-default blue">Verify</button>
+                        <button type="button" class="btn btn-default grey reset-button">Reset</button>
+                    </div>
+                    <div class="col-md-1 text-right form-control-extra-padding">
+                        <a href="#" class="next-step hidden-xs" data-target="money-info">NEXT <i class="fa fa-angle-right"></i></a>
+                    </div>
+                </form>
+            </div>
+            <br/>  <br/>
+            <div class="row">
+                 <div id="showMsg1" style="display: none"></div>
+               </div>
+            
+        </div>
+        <div class="row form-title visible-xs" data-target="money-info">
+            <div class="col-xs-12">
+                <div class="circle small text-center">
+                    <i class="fa fa-dollar fa-2x fa-inverse"></i>
+                </div>
+                <h3>Transfer Money</h3>
+            </div>
+        </div>
+        <div id="money-info" class="step" style="display: none;">
+            <div class="row">
+                <div class="col-md-11 col-md-offset-1 hidden-xs">
+                    <h3>Transfer Money</h3>
+                </div>
+            </div>
+            <div class="row form-content">
+                <form id="money-transfer-form" method="POST">
+                    <div class="col-md-4 col-md-offset-1">
+                        <div class="form-group">
+                            <label for="sender-card-number-final">Sender's Visa Card Number</label>
+                            <a href="#" class="update-link" data-target="sender-info">update</a>
+                            <input type="text" class="form-control" id="sender-card-number-final" name="sender-card-number-final" disabled="disabled" value="4957030420210462"/>
+                        </div>
+                        <div class="form-group">
+                            <label id="receiver-card-number-final">Receiver's Visa Card Number</label>
+                            <a href="#" class="update-link" data-target="receiver-info">update</a>
+                            <input type="text" class="form-control" id="receiver-card-number-final" name="receiver-card-number-final" disabled="disabled" value="4895070000008881"/>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="transfer-amount">Amount</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">$</div>
+                            <input type="text" class="form-control" id="transfer-amount" name="transfer-amount" value="25"/>
+                          </div>
+                    </div>
+                    <div class="col-md-4 form-control-extra-padding">
+                        <button id="transfer-fund-button" type="submit" class="btn btn-default blue">Transfer</button>
+                        <button type="button" class="btn btn-default grey reset-button">Reset</button>
+                    </div>
+                </form>
+            </div>
+            
+            <br/>  <br/>
+            <div class="row">
+                 <div id="showMsg2" style="display: none"></div>
+               </div>
+        </div>
+    </div> <!-- /container -->
+    
+    <!-- Modal -->
+    <div class="modal fade" id="update-credential-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times-circle fa-1x"></i></button>
+                    <h4 class="modal-title" id="myModalLabel">Update Credentials</h4>
+                </div>
+                <form id="update-credential-form">               
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="api-key" class="control-label">API-Key</label>
+                            <input type="text" class="form-control" id="api-key" name="api-key">
+                        </div>
+                        <div class="form-group">
+                            <label for="share-secret" class="control-label">Shared Secret</label>
+                            <input type="text" class="form-control" id="share-secret" name="share-secret">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default blue">Save changes</button><button type="button" class="btn btn-default grey reset-button" id="clearAdmin">Reset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jasny-bootstrap.js"></script>
+    <script src="js/fund-transfer.js"></script>
+  </body>
+</html>

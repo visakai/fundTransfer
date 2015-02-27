@@ -41,6 +41,7 @@ public class AccountVerificationRequestServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 	        HttpServletResponse response) throws ServletException,
 	        IOException {
+		System.out.println("AccountVerificationRequestServlet Start>>>");
 		String payload = (String) new ConfigValues().getPropValues()
 		        .get("payloadACNV");
 		String jsonRequest = "";

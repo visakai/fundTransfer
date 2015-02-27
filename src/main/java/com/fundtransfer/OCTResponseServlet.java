@@ -31,6 +31,8 @@ public class OCTResponseServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 	        HttpServletResponse response) throws ServletException,
 	        IOException {
+		System.out.println("OCTResponseServlet Start>>>");
+
 		String payload = "";
 		String senderPAN = null;
 		String recipientPAN = null;

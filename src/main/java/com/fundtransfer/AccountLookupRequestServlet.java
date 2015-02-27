@@ -40,6 +40,7 @@ public class AccountLookupRequestServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 	        HttpServletResponse response) throws ServletException,
 	        IOException {
+		System.out.println("AccountLookupRequestServlet Start>>>");
 		String recipientCardNumber = request
 		        .getParameter("recipientCardNumber");
 		String payload = (String) new ConfigValues().getPropValues()
